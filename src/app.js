@@ -1,8 +1,12 @@
 var logger = require('./log').logger;
 var log = new logger("app");
 
-var express = require('express');
 var path = require('path');
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 
 var Twitter = require('twitter');
 var Themes = require('./themes');
@@ -25,30 +29,45 @@ var credentials = {
 
 const KEYWORD = "javascript";
 
-var client = new Twitter(credentials);
-var stream = client.stream('statuses/filter', {track: KEYWORD, lang: "en"});
+// var client = new Twitter(credentials);
+// var stream = client.stream('statuses/filter', {track: KEYWORD, lang: "en"});
 
 
-stream.on('data', function (tweet) {
-    log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
-    tweet.entities.hashtags.forEach(function (hashtag) {
-        var tag = hashtag.text.toLowerCase();
-        if (tag != KEYWORD) {
-            log.trace("Stripped hashtag : {}", [hashtag.text]);
-            themeSelector.guessTheme(tag);
-        }
+// stream.on('data', function (tweet) {
+//     log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
+//     tweet.entities.hashtags.forEach(function (hashtag) {
+//         var tag = hashtag.text.toLowerCase();
+//         if (tag != KEYWORD) {
+//             log.trace("Stripped hashtag : {}", [hashtag.text]);
+//             themeSelector.guessTheme(tag);
+//         }
+//     });
+// });
+//
+// stream.on('error', function (error) {
+//     log.error("error", error);
+//     throw error;
+// });
+
+
+io.on('connection', function(socket){
+    log.debug('Web ui connected');
+
+    socket.on('selectTheme', function(theme) {
+        themeSelector.selectTheme(theme);
+    });
+
+    socket.on('disconnect', function(){
+        log.trace('Web ui disconnected');
     });
 });
 
-stream.on('error', function (error) {
-    log.error("error", error);
-    throw error;
-});
-
-themeServer["rainbow"]();
-
-//express stuff for web server
-var app = express();
+//serves the standard page.
 app.use(express.static(path.join(__dirname, '../public')));
 
-module.exports = app;
+/*
+ * Listens for incoming connections on port 3000
+ */
+http.listen(3000, function(){
+    log.info('Server started and listening on 3000');
+});

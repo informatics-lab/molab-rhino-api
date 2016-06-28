@@ -9,9 +9,15 @@ module.exports = function(display, themeServer) {
         log.info("Setting all pixels to red");
         display.setAllPixelsToColor(Color("red"));
     };
+
     var green = function () {
         log.info("Setting all pixels to green");
         display.setAllPixelsToColor(Color("green"));
+    };
+
+    var blue = function () {
+        log.info("Setting all pixels to blue");
+        display.setAllPixelsToColor(Color("blue"));
     };
 
     return {
@@ -26,6 +32,11 @@ module.exports = function(display, themeServer) {
                 }
             });
             red();
+        },
+
+        selectTheme : function(theme) {
+            blue();
+            themeServer[theme]();
         }
         
     }
