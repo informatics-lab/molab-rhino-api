@@ -5,12 +5,15 @@ var express = require('express');
 var path = require('path');
 
 var Twitter = require('twitter');
-var ThemeServer = require('./themes').themeServer;
+var Themes = require('./themes');
+var ThemeServer = Themes.themeServer;
+var ThemeSelector = Themes.themeSelector;
 var Display = require('./display').pythonServerDisplay;
 
 
-var display = new Display("http://test.com", 10);
+var display = new Display("http://172.24.1.1:8000/cgi-bin/panel.py", 80);
 var themeServer = new ThemeServer(display);
+var themeSelector = new ThemeSelector(display, themeServer);
 
 // read in credentials from env variables
 var credentials = {
@@ -23,7 +26,7 @@ var credentials = {
 const KEYWORD = "javascript";
 
 var client = new Twitter(credentials);
-var stream = client.stream('statuses/filter', {track: keyword, lang: "en"});
+var stream = client.stream('statuses/filter', {track: KEYWORD, lang: "en"});
 
 
 stream.on('data', function (tweet) {
@@ -32,12 +35,7 @@ stream.on('data', function (tweet) {
         var tag = hashtag.text.toLowerCase();
         if (tag != KEYWORD) {
             log.trace("Stripped hashtag : {}", [hashtag.text]);
-            Object.getOwnPropertyNames(themeServer).forEach(function (theme) {
-                if (tag === theme) {
-                    log.trace("Hashtag {} matched theme");
-                    themeServer[theme]();
-                }
-            });
+            themeSelector.guessTheme(tag);
         }
     });
 });
@@ -46,6 +44,8 @@ stream.on('error', function (error) {
     log.error("error", error);
     throw error;
 });
+
+themeServer["rainbow"]();
 
 //express stuff for web server
 var app = express();
