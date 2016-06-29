@@ -24,19 +24,22 @@ var colorWheel = function(wheelPosition) {
 };
 
 module.exports = function(display) {
-    var loopNum = 0;
-    var cwi = 0;
-    var loop = setInterval(function () {
-        cwi +=5;
-        if (cwi > 255) {
-            loopNum++;
-            cwi =0;
-        }
-        // for(var i = 0; i < 100; i++) {
-        display.setAllPixelsToColor(colorWheel(cwi));
-        // }
-        if (loopNum >= 1){
-            clearInterval(loop);
-        }
-    }, 1000/4);
+    return new Promise (function(resolve, reject){
+        var loopNum = 0;
+        var cwi = 0;
+        var loop = setInterval(function () {
+            cwi +=5;
+            if (cwi > 255) {
+                loopNum++;
+                cwi =0;
+            }
+            // for(var i = 0; i < 100; i++) {
+            display.setAllPixelsToColor(colorWheel(cwi));
+            // }
+            if (loopNum >= 1){
+                clearInterval(loop);
+                resolve ();
+            }
+        }, 1000/20);
+    });
 };
