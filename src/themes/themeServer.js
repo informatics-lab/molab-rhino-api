@@ -9,8 +9,12 @@ module.exports = function(display) {
     return {
         
         rainbow : function () {
-            log.info("Setting all pixels to custom");
-            custom.rainbow(display);
+            log.info("Setting all pixels to rainbow");
+            return custom.rainbow(display);
+        },
+        redGreen : function () {
+            log.info("Setting all pixels to red-green flash");
+            return custom.redGreen(display);
         }
 
     }
