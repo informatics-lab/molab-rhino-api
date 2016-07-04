@@ -25,11 +25,16 @@
 <div class="interaction-container">
     <a href="#" onclick="setMaterial('data/union-jack.png')">union jack</a>
     <a href="#" onclick="setMaterial('data/UV_Grid_Sm.jpg')">uv grid</a>
+    
+    <label>Red</label>
+    <input id="redChannel" class="colorSlider" type="range" min="0" max="15" step="1" onchange="colorSliderChanged()"/>
+    <label>Green</label>
+    <input id="greenChannel" class="colorSlider" type="range" min="0" max="15" step="1" onchange="colorSliderChanged()"/>
+    <label>Blue</label>
+    <input id="blueChannel" class="colorSlider" type="range" min="0" max="15" step="1" onchange="colorSliderChanged()"/>
 
     <script type="text/javascript" src="js/lib/three.js/three.min.js"></script>
-    <script type="text/javascript" src="js/lib/three.js/STLLoader.js"></script>
     <script type="text/javascript" src="js/lib/three.js/OBJLoader.js"></script>
-    <script type="text/javascript" src="js/lib/three.js/MTLLoader.js"></script>
     <script type="text/javascript" src="js/lib/three.js/OrbitControls.js"></script>
     <script type="text/javascript" src="js/threejs-rhino.js"></script>
 </div>

@@ -3,7 +3,7 @@
  */
 
 var container;
-var camera, cameraTarget, rhino, scene, renderer;
+var camera, cameraTarget, rhino, material, scene, renderer;
 
 init();
 setMaterial();
@@ -74,11 +74,16 @@ function animate() {
 }
 
 function render() {
-    var timer = Date.now() * 0.0005;
 //    camera.position.x = Math.cos(timer) * 200;
 //    camera.position.z = Math.sin(timer) * 200;
     camera.lookAt(cameraTarget);
     renderer.render(scene, camera);
+}
+
+function setColor(colorString) {
+    material = new THREE.MeshPhongMaterial({
+        color: new THREE.Color(colorString)
+    });
 }
 
 function setMaterial(textureUrl) {
@@ -99,26 +104,10 @@ function setMaterial(textureUrl) {
     manager.onProgress = function (item, loaded, total) {
         console.log(item, loaded, total);
     };
-
-    var material;
-    if(textureUrl) {
-        var loader = new THREE.TextureLoader(manager);
-        loader.load(textureUrl, function (texture) {
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-            texture.anisotropy = 16;
-            texture.needsUpdate = true;
-
-            // do something with the texture
-            material = new THREE.MeshPhongMaterial({
-                map: texture
-            });
-
-        });
-    } else {
-        material = new THREE.MeshPhongMaterial({
-            color: 0x666666
-        })
-    }
+    
+    material = new THREE.MeshPhongMaterial({
+        color: new THREE.Color("#666666")
+    });
 
     var loader = new THREE.OBJLoader(manager);
     loader.load('data/newRhino.obj', function (object) {

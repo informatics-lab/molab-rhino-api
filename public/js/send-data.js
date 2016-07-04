@@ -10,8 +10,8 @@ window.onload = function () {
     
     socket.on('tweet', function(tweet){
         tweetNum ++;
-        console.log('total tweet number', tweetNum);
-        console.log('tweet received', tweet);
+//        console.log('total tweet number', tweetNum);
+//        console.log('tweet received', tweet);
         var div = document.getElementById('tweetDisplay');
         div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
         
@@ -34,4 +34,13 @@ function tweetToHtml(tweet) {
     html = html + '<p>' + tweet.text + '</p>';
     html = html + '</div>';
     return html;
+}
+
+function colorSliderChanged() {
+    var red = document.getElementById('redChannel').value;
+    var green = document.getElementById('greenChannel').value;
+    var blue = document.getElementById('blueChannel').value;
+    setColor("#" + red.toString(16) + green.toString(16) + blue.toString(16));
+    console.log(red);
+    console.log(red.toString(16) + green.toString(16) + blue.toString(16));
 }
