@@ -25,6 +25,14 @@ module.exports = function (baseUrl, numPixels) {
         xhr.send();
     };
 
+    var writeAsPost = function (colors) {
+        log.trace("Writing colors to python server [{}]", [baseUrl]);
+        var xhr = new XMLHttpRequest();
+        log.trace("Posting data to url [{}]",[url]);
+        xhr.open("POST", url);
+        xhr.send(colors.join(""));
+    };
+
     return {
 
         setPixelsToColorArray: function (colorArray) {
