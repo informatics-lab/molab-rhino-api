@@ -1,0 +1,33 @@
+/*
+* --THUMBNAIL STYLES--
+* 
+*/
+
+.img-with-text {
+    text-align: center;
+    width: 150px;
+}
+
+.img-with-text img {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+}
+
+/*
+*--TWITTER STYLES --
+*
+*/
+
+.tweet-container {
+    margin:10px 10px 15px;
+}
+
+#tweetDisplay {
+    overflow-y: scroll; 
+    height:400px;
+}
+
+.tweet {
+    border: 2px solid grey;
+}

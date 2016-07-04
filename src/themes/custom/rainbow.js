@@ -25,6 +25,7 @@ var colorWheel = function(wheelPosition) {
 
 module.exports = function(display) {
     return new Promise (function(resolve, reject){
+        global.ledInterupt = false;
         var loopNum = 0;
         var cwi = 0;
         var loop = setInterval(function () {
@@ -36,7 +37,7 @@ module.exports = function(display) {
             // for(var i = 0; i < 100; i++) {
             display.setAllPixelsToColor(colorWheel(cwi));
             // }
-            if (loopNum >= 1){
+            if (loopNum >= 10 || gloabl.ledInterupt){
                 clearInterval(loop);
                 resolve ();
             }
