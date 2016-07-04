@@ -34,9 +34,7 @@ module.exports = function(display) {
                 loopNum++;
                 cwi =0;
             }
-            // for(var i = 0; i < 100; i++) {
             display.setAllPixelsToColor(colorWheel(cwi));
-            // }
             if (loopNum >= 10 || gloabl.ledInterupt){
                 clearInterval(loop);
                 resolve ();
