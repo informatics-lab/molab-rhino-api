@@ -1,4 +1,12 @@
 /*
+* -- RHINO INTERACTION --
+**/
+
+.interaction-container {
+    width: screen.width;
+}
+
+/*
 * --THUMBNAIL STYLES--
 * 
 */

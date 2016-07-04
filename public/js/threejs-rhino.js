@@ -13,8 +13,8 @@ function init() {
     container = document.createElement('div');
     document.body.appendChild(container);
 
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(200, 20, 200);
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight * 2, 1, 1000);
+    camera.position.set(0, 200, 0);
     cameraTarget = new THREE.Vector3(0, 0, 0);
 
     scene = new THREE.Scene();
@@ -27,7 +27,7 @@ function init() {
     // renderer
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight / 2);
     renderer.gammaInput = true;
     renderer.gammaOutput = true;
     renderer.shadowMap.enabled = true;
@@ -35,6 +35,14 @@ function init() {
     container.appendChild(renderer.domElement);
 
     window.addEventListener('resize', onWindowResize, false);
+    
+    // Controls
+    var controls = new THREE.OrbitControls( camera, renderer.domElement );
+    controls.enablePan = false;
+    controls.minDistance = 100.0;
+    controls.maxDistance = 500.0;
+    controls.maxPolarAngle = Math.PI * 0.495;
+    controls.target.set( 0, 0, 0 );
 }
 
 function addShadowedLight(x, y, z, color, intensity) {
@@ -67,8 +75,8 @@ function animate() {
 
 function render() {
     var timer = Date.now() * 0.0005;
-    camera.position.x = Math.cos(timer) * 200;
-    camera.position.z = Math.sin(timer) * 200;
+//    camera.position.x = Math.cos(timer) * 200;
+//    camera.position.z = Math.sin(timer) * 200;
     camera.lookAt(cameraTarget);
     renderer.render(scene, camera);
 }
@@ -120,8 +128,8 @@ function setMaterial(textureUrl) {
                 child.material = material;
             }
         });
-        object.position.set(0, -20, 0);
-        object.rotation.set(Math.PI / 2, Math.PI, 0);
+        object.position.set(-20, -20, 40);
+        object.rotation.set(Math.PI / 2, Math.PI, Math.PI / 4);
         rhino = object;
         scene.add(rhino);
         console.log(object);

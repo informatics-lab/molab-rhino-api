@@ -18,7 +18,21 @@
 </head>
     
 <body>
-<h1>It Works</h1>
+<h1>Ronnie!</h1>
+    
+<!-- RHINO INTERACTION -->    
+    
+<div class="interaction-container">
+    <a href="#" onclick="setMaterial('data/union-jack.png')">union jack</a>
+    <a href="#" onclick="setMaterial('data/UV_Grid_Sm.jpg')">uv grid</a>
+
+    <script type="text/javascript" src="js/lib/three.js/three.min.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/STLLoader.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/OBJLoader.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/MTLLoader.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/OrbitControls.js"></script>
+    <script type="text/javascript" src="js/threejs-rhino.js"></script>
+</div>
 
 <!-- THEME THUMBNAILS -->    
     
@@ -27,7 +41,6 @@
     <div class="pure-u-md-1-3">
         <div class="img-with-text">
             <a href="#" onclick="selectTheme('rainbow')">
-                <img src="img/rhino_stella.jpeg"/> 
                 <p>Rainbow</p>
             </a>
         </div>
@@ -35,7 +48,6 @@
     <div class="pure-u-md-1-3">
         <div class="img-with-text">
             <a href="#" onclick="selectTheme('redGreen')">
-                <img src="img/rhino_stella.jpeg"/> 
                 <p>Red Green Flash</p>
             </a>
         </div>
@@ -43,16 +55,7 @@
     <div class="pure-u-md-1-3">
         <div class="img-with-text">
             <a href="#" onclick="selectTheme('onePixel')">
-                <img src="img/rhino_stella.jpeg"/> 
                 <p>One pixel</p>
-            </a>
-        </div>
-    </div>
-    <div class="pure-u-md-1-3">
-        <div class="img-with-text">
-            <a href="#" onclick="selectTheme('3')">
-                <img src="img/rhino_stella.jpeg"/> 
-                <p>3</p>
             </a>
         </div>
     </div>
