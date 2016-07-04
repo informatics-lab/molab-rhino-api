@@ -38,10 +38,15 @@ module.exports = function(display, themeServer) {
         });
     };
 
+    var setInterupt = function () {
+            global.ledInterupt = true;
+    };
+    
     return {
         
         guessTheme : function(guess) {
-            Object.getOwnPropertyNames(themeServer).forEach(function (theme) {
+             setInterupt ();
+             Object.getOwnPropertyNames(themeServer).forEach(function (theme) {
                 if (guess === theme) {
                     log.trace("{} matched theme",[guess]);
                     green().then(function(){
@@ -58,6 +63,7 @@ module.exports = function(display, themeServer) {
         },
 
         selectTheme : function(theme) {
+            setInterupt ();
             blue().then(function(){
                 return themeServer[theme]();
                 }).then(function(){
