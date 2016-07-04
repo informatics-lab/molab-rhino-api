@@ -15,6 +15,7 @@ var ThemeSelector = Themes.themeSelector;
 var Display = require('./display').pythonServerDisplay;
 var EventEmitter = require('events');
 
+// --- Hard coded pixel number ---
 var display = new Display("http://172.24.1.1:8000/cgi-bin/panel.py", 80);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
@@ -31,29 +32,32 @@ const KEYWORD = "javascript";
 
 var myEventEmitter = new EventEmitter();
 
- var client = new Twitter(credentials);
- var stream = client.stream('statuses/filter', {track: KEYWORD});
+// ---COMMENT OUT SECTION IF NO INTERNET CONNECTION ---
 
+// var client = new Twitter(credentials);
+// var stream = client.stream('statuses/filter', {track: KEYWORD});
+//
+//
+// stream.on('data', function (tweet) {
+//     if (tweet.lang === "en") {
+//         log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
+//         myEventEmitter.emit('tweet', tweet);
+//         tweet.entities.hashtags.forEach(function (hashtag) {
+//             var tag = hashtag.text.toLowerCase();
+//             if (tag != KEYWORD) {
+//                 log.trace("Stripped hashtag : {}", [hashtag.text]);
+//                 themeSelector.guessTheme(tag);
+//             }
+//         });
+//     }
+// });
+//
+// stream.on('error', function (error) {
+//     log.error("error", error);
+//     throw error;
+// });
 
- stream.on('data', function (tweet) {
-     if (tweet.lang === "en") {
-         log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
-         myEventEmitter.emit('tweet', tweet);
-         tweet.entities.hashtags.forEach(function (hashtag) {
-             var tag = hashtag.text.toLowerCase();
-             if (tag != KEYWORD) {
-                 log.trace("Stripped hashtag : {}", [hashtag.text]);
-                 themeSelector.guessTheme(tag);
-             }
-         });
-     }
- });
-
- stream.on('error', function (error) {
-     log.error("error", error);
-     throw error;
- });
-
+// --- END OF COMMENT SECTION ---
 
 io.on('connection', function(socket){
     log.debug('Web ui connected');

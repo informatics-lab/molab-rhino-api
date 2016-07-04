@@ -15,8 +15,11 @@ module.exports = function(display) {
         redGreen : function () {
             log.info("Setting all pixels to red-green flash");
             return custom.redGreen(display);
-        }
-
+        },
+        onePixel : function () {
+        log.info("Setting an indiviual pixel");
+        return custom.onePixel(display);
+        },
     }
     
 };
