@@ -1,3 +1,5 @@
+var logger = require('../../log/index').logger;
+var log = new logger("themes.custom.rainbow");
 
 var Color = require('color');
 
@@ -25,6 +27,7 @@ var colorWheel = function(wheelPosition) {
 
 module.exports = function(display) {
     return new Promise (function(resolve, reject){
+        log.info("Setting pixels to rainbow");
         global.ledInterupt = false;
         var loopNum = 0;
         var cwi = 0;
@@ -35,10 +38,10 @@ module.exports = function(display) {
                 cwi =0;
             }
             display.setAllPixelsToColor(colorWheel(cwi));
-            if (loopNum >= 10 || gloabl.ledInterupt){
+            if (loopNum >= 2 || global.ledInterupt){
                 clearInterval(loop);
                 resolve ();
             }
-        }, 1000/20);
+        }, 1000/2);
     });
 };
