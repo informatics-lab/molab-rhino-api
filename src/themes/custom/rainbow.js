@@ -29,13 +29,15 @@ module.exports = function(display) {
         var loopNum = 0;
         var cwi = 0;
         var loop = setInterval(function () {
+            console.log("led interupt value in rainbow", [global.ledInterupt]);
             cwi +=5;
             if (cwi > 255) {
                 loopNum++;
                 cwi =0;
             }
             display.setAllPixelsToColor(colorWheel(cwi));
-            if (loopNum >= 10 || gloabl.ledInterupt){
+            if (loopNum >= 1 || global.ledInterupt){
+                console.log("Exiting rainbow");
                 clearInterval(loop);
                 resolve ();
             }

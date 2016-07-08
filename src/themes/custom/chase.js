@@ -1,5 +1,5 @@
 //
-// Flash green/red quickly enough to see yellow 
+// 
 //
 
 var Color = require('color');
@@ -9,17 +9,15 @@ module.exports = function(display) {
         global.ledInterupt = false;
         var loopnum = 0;
         var loop = setInterval(function () {
-            if (loopnum % 2 == 0){
-                display.setAllPixelsToColor(Color("red")); 
+            for (i=0; i<(global.pixelNum); i++) {
+                display.setPixelToColor(i, Color("green"));
             }
-            else {
-                display.setAllPixelsToColor(Color("green"));
-            }
-            if (loopnum >= 500 || global.ledInterupt) {
+            if (loopnum >= 2 || global.ledInterupt) {
                 clearInterval(loop);
                 resolve ();
             }
             loopnum ++;
-        }, 1000/20);
+        }, 1000/2);
     });
-}
+};
+

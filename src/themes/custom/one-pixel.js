@@ -11,16 +11,18 @@ function getRandomPixel(min, max) {
 module.exports = function(display) {
     return new Promise (function(resolve, reject){
         global.ledInterupt = false;
-        var loopnum = 1;
+        var loopnum = 0;
         var loop = setInterval(function () {
-           if (loopnum % 2 == 0){
+            console.log("led interupt value in one pixel", [global.ledInterupt]);
+            if (loopnum % 2 == 0){
                 display.setAllPixelsToColor(Color("black"));
-                display.setPixelToColor(getRandomPixel(0, 79), Color("red")); 
+                display.setPixelToColor(getRandomPixel(0, global.pixelNum-1), Color("red")); 
             }
             else {
                 display.setAllPixelsToColor(Color("green"));
             }
-            if (loopnum >= 500 || global.ledInterupt) {
+            if (loopnum >= 1 || global.ledInterupt) {
+                console.log("Exiting one-pixel");
                 clearInterval(loop);
                 resolve ();
             }

@@ -40,7 +40,12 @@ function colorSliderChanged() {
     var red = document.getElementById('redChannel').value;
     var green = document.getElementById('greenChannel').value;
     var blue = document.getElementById('blueChannel').value;
+    red = red >> 4;
+    green = green >> 4;
+    blue = blue >> 4;
     setColor("#" + red.toString(16) + green.toString(16) + blue.toString(16));
-    console.log(red);
-    console.log(red.toString(16) + green.toString(16) + blue.toString(16));
+    
+    console.log("red", [red]);
+    console.log("red in hex", [red.toString(16)])
+    console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
 }

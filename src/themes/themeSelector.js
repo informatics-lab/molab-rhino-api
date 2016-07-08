@@ -39,7 +39,8 @@ module.exports = function(display, themeServer) {
     };
 
     var setInterupt = function () {
-            global.ledInterupt = true;
+        global.ledInterupt = true;
+        console.log("Setting LED interupt", [global.ledInterupt]);
     };
     
     return {

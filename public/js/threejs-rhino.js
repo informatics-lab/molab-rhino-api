@@ -35,7 +35,7 @@ function init() {
     container.appendChild(renderer.domElement);
 
     window.addEventListener('resize', onWindowResize, false);
-    
+
     // Controls
     var controls = new THREE.OrbitControls( camera, renderer.domElement );
     controls.enablePan = false;
@@ -81,6 +81,7 @@ function render() {
 }
 
 function setColor(colorString) {
+    console.log("rhino color", [colorString]);
     material = new THREE.MeshPhongMaterial({
         color: new THREE.Color(colorString)
     });
@@ -104,7 +105,7 @@ function setMaterial(textureUrl) {
     manager.onProgress = function (item, loaded, total) {
         console.log(item, loaded, total);
     };
-    
+
     material = new THREE.MeshPhongMaterial({
         color: new THREE.Color("#666666")
     });

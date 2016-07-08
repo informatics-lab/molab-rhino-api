@@ -16,7 +16,9 @@ var Display = require('./display').pythonServerDisplay;
 var EventEmitter = require('events');
 
 // --- Hard coded pixel number ---
-var display = new Display("http://172.24.1.1:8000/cgi-bin/panel.py", 80);
+global.pixelNum = 1002;
+
+var display = new Display("http://172.24.1.1:8000/cgi-bin/panel.py", global.pixelNum);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
@@ -34,29 +36,29 @@ var myEventEmitter = new EventEmitter();
 
 // ---COMMENT OUT SECTION IF NO INTERNET CONNECTION ---
 
-var client = new Twitter(credentials);
-var stream = client.stream('statuses/filter', {track: KEYWORD, language: "en"});
-
-stream.on('data', function (tweet) {
-//    if (tweet.lang === "en") {
-        log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
-        tweet.text = tweet.text.toLowerCase();
-        tweet.text = filter.clean(tweet.text);
-        myEventEmitter.emit('tweet', tweet);
-        tweet.entities.hashtags.forEach(function (hashtag) {
-            var tag = hashtag.text.toLowerCase();
-            if (tag != KEYWORD) {
-                log.trace("Stripped hashtag : {}", [hashtag.text]);
-                themeSelector.guessTheme(tag);
-            }
-        });
-//    }
-});
-
-stream.on('error', function (error) {
-    log.error("error", error);
-    throw error;
-});
+//var client = new Twitter(credentials);
+//var stream = client.stream('statuses/filter', {track: KEYWORD, language: "en"});
+//
+//stream.on('data', function (tweet) {
+////    if (tweet.lang === "en") {
+//        log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
+//        tweet.text = tweet.text.toLowerCase();
+//        tweet.text = filter.clean(tweet.text);
+//        myEventEmitter.emit('tweet', tweet);
+//        tweet.entities.hashtags.forEach(function (hashtag) {
+//            var tag = hashtag.text.toLowerCase();
+//            if (tag != KEYWORD) {
+//                log.trace("Stripped hashtag : {}", [hashtag.text]);
+//                themeSelector.guessTheme(tag);
+//            }
+//        });
+////    }
+//});
+//
+//stream.on('error', function (error) {
+//    log.error("error", error);
+//    throw error;
+//});
 
 // --- END OF COMMENT SECTION ---
 
