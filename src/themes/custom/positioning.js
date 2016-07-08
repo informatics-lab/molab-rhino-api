@@ -1,5 +1,5 @@
 //
-// 
+// Experimental theme for mapping
 //
 
 var Color = require('color');
@@ -20,8 +20,9 @@ module.exports = function(display) {
             }, 5000);
         };
         
-        for(i=0; i<global.pixelNum; i++) {
-            green(i);
+        green(0);
+        for(i=0; i<(global.pixelNum-1); i++) {
+            green(i+1);
             black(i);
         }
         resolve();

@@ -6,6 +6,7 @@ var container;
 var camera, cameraTarget, rhino, material, scene, renderer;
 
 init();
+initalcolor();
 setMaterial();
 animate();
 
@@ -81,10 +82,10 @@ function render() {
 }
 
 function setColor(colorString) {
-    console.log("rhino color", [colorString]);
     material = new THREE.MeshPhongMaterial({
         color: new THREE.Color(colorString)
     });
+    setMaterial();
 }
 
 function setMaterial(textureUrl) {
@@ -106,10 +107,6 @@ function setMaterial(textureUrl) {
         console.log(item, loaded, total);
     };
 
-    material = new THREE.MeshPhongMaterial({
-        color: new THREE.Color("#666666")
-    });
-
     var loader = new THREE.OBJLoader(manager);
     loader.load('data/newRhino.obj', function (object) {
         object.traverse(function (child) {
@@ -128,3 +125,9 @@ function setMaterial(textureUrl) {
     console.log("Rhino texture is now using", textureUrl);
 
 };
+
+function initalcolor(){
+    material = new THREE.MeshPhongMaterial({
+        color: new THREE.Color("#666666")
+    });
+}

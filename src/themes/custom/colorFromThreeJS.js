@@ -1,5 +1,5 @@
 //
-// 
+// Displays colour of 3D rhino onto real rhino
 //
 
 var Color = require('color');
@@ -9,10 +9,10 @@ module.exports = function(display) {
         global.ledInterupt = false;
         var loopnum = 0;
         var loop = setInterval(function () {
-            for (i=0; i<(global.pixelNum); i++) {
-                display.setPixelToColor(i, Color("green"));
-            }
-            if (loopnum >= 2 || global.ledInterupt) {
+
+            display.setAllPixelsToColor(Color("black"));
+
+            if (loopnum >= 1 || global.ledInterupt) {
                 clearInterval(loop);
                 resolve ();
             }
@@ -20,4 +20,3 @@ module.exports = function(display) {
         }, 1000/2);
     });
 };
-

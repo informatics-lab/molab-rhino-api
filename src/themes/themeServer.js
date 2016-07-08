@@ -24,13 +24,13 @@ module.exports = function(display) {
             log.info("Turn off all pixels");
             return custom.off(display);
         },
-        chase : function () {
+        default : function () {
             log.info("LED chasing to the end");
-            return custom.chase(display);
+            return custom.default(display);
         },
-        positioning : function () {
-            log.info("Testing for LED position");
-            return custom.positioning(display);
+        colorFromThreeJS : function () {
+            log.info("Displaying color from threeJS");
+            return custom.colorFromThreeJS(display);
         },
     }
     

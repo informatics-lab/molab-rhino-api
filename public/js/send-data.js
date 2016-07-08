@@ -45,7 +45,15 @@ function colorSliderChanged() {
     blue = blue >> 4;
     setColor("#" + red.toString(16) + green.toString(16) + blue.toString(16));
     
-    console.log("red", [red]);
-    console.log("red in hex", [red.toString(16)])
     console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
+}
+
+function colorMaker (theme) {
+    var red = document.getElementById('redChannel').value;
+    var green = document.getElementById('greenChannel').value;        
+    var blue = document.getElementById('blueChannel').value;
+    
+    var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
+    
+    socket.emit('selectTheme',theme);
 }
