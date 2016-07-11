@@ -4,13 +4,13 @@
 
 var Color = require('color');
 
-module.exports = function(display) {
+module.exports = function(display, colorString) {
     return new Promise (function(resolve, reject){
         global.ledInterupt = false;
         var loopnum = 0;
         var loop = setInterval(function () {
 
-            display.setAllPixelsToColor(Color("black"));
+            display.setAllPixelsToColor(Color(colorString));
 
             if (loopnum >= 1 || global.ledInterupt) {
                 clearInterval(loop);

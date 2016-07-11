@@ -72,6 +72,10 @@ io.on('connection', function(socket){
     socket.on('selectTheme', function(theme) {
         themeSelector.selectTheme(theme);
     });
+    
+    socket.on('selectCustomTheme', function(theme) {
+        themeSelector.selectCustomTheme(theme);
+    });
 
     socket.on('disconnect', function(){
         log.trace('Web ui disconnected');

@@ -70,8 +70,16 @@ module.exports = function(display, themeServer) {
                 }).then(function(){
                     off();
                 });
-        }
+        },
         
+        selectCustomTheme : function(theme) {
+            setInterupt ();
+            blue().then(function(){
+                return themeServer[theme.theme](theme.colorString);
+                }).then(function(){
+                    off();
+            });
+        }
     }
 
 };

@@ -28,9 +28,9 @@ module.exports = function(display) {
             log.info("LED chasing to the end");
             return custom.default(display);
         },
-        colorFromThreeJS : function () {
+        colorFromThreeJS : function (colorString) {
             log.info("Displaying color from threeJS");
-            return custom.colorFromThreeJS(display);
+            return custom.colorFromThreeJS(display, colorString);
         },
     }
     
