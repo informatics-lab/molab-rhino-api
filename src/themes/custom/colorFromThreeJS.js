@@ -12,7 +12,7 @@ module.exports = function(display, colorString) {
 
             display.setAllPixelsToColor(Color(colorString));
 
-            if (loopnum >= 1 || global.ledInterupt) {
+            if (loopnum >= 10 || global.ledInterupt) {
                 clearInterval(loop);
                 resolve ();
             }

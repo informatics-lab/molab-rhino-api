@@ -26,10 +26,10 @@ var colorWheel = function(wheelPosition) {
 module.exports = function(display) {
     return new Promise (function(resolve, reject){
         global.ledInterupt = false;
+        console.log("led interupt value in rainbow", [global.ledInterupt]);
         var loopNum = 0;
         var cwi = 0;
         var loop = setInterval(function () {
-            console.log("led interupt value in rainbow", [global.ledInterupt]);
             cwi +=5;
             if (cwi > 255) {
                 loopNum++;

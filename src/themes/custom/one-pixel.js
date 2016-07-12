@@ -11,9 +11,9 @@ function getRandomPixel(min, max) {
 module.exports = function(display) {
     return new Promise (function(resolve, reject){
         global.ledInterupt = false;
+        console.log("led interupt value in one pixel", [global.ledInterupt]);
         var loopnum = 0;
         var loop = setInterval(function () {
-            console.log("led interupt value in one pixel", [global.ledInterupt]);
             if (loopnum % 2 == 0){
                 display.setAllPixelsToColor(Color("black"));
                 display.setPixelToColor(getRandomPixel(0, global.pixelNum-1), Color("red")); 

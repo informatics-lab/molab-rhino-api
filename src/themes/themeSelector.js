@@ -39,8 +39,11 @@ module.exports = function(display, themeServer) {
     };
 
     var setInterupt = function () {
-        global.ledInterupt = true;
-        console.log("Setting LED interupt", [global.ledInterupt]);
+        return new Promise(function(resolve, reject){
+            global.ledInterupt = true;
+            log.info("Setting LED interupt");
+            return resolve();
+        });
     };
     
     return {
@@ -64,9 +67,10 @@ module.exports = function(display, themeServer) {
         },
 
         selectTheme : function(theme) {
-            setInterupt ();
-            blue().then(function(){
-                return themeServer[theme]();
+            setInterupt ().then(function(){
+                    blue()
+                }).then(function(){
+                    return themeServer[theme]();
                 }).then(function(){
                     off();
                 });
