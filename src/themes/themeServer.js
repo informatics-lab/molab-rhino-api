@@ -17,9 +17,9 @@ module.exports = function(display) {
             return custom.redGreen(display);
         },
         onePixel : function () {
-        log.info("Setting an indiviual pixel");
-        return custom.onePixel(display);
-        },
+            log.info("Setting an indiviual pixel");
+            return custom.onePixel(display);
+        }
     }
     
 };

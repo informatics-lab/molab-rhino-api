@@ -65,7 +65,7 @@ module.exports = function(display, themeServer) {
         selectTheme : function(theme) {
             setInterupt ();
             blue().then(function(){
-                return themeServer[theme]();
+                    return themeServer[theme]();
                 }).then(function(){
                     off();
                 });
