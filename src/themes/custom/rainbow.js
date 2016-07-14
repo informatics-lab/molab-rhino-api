@@ -1,5 +1,3 @@
-var logger = require('../../log/index').logger;
-var log = new logger("themes.custom.rainbow");
 
 var Color = require('color');
 
@@ -42,6 +40,6 @@ module.exports = function(display) {
                 clearInterval(loop);
                 resolve ();
             }
-        }, 1000/2);
+        }, 1000/20);
     });
 };

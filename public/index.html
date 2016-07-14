@@ -18,7 +18,30 @@
 </head>
     
 <body>
-<h1>It Works</h1>
+<h1>Ronnie!</h1>
+    
+<!-- RHINO INTERACTION -->    
+    
+<div class="interaction-container">
+    <a href="#" onclick="setMaterial('data/union-jack.png')">union jack</a>
+    <a href="#" onclick="setMaterial('data/UV_Grid_Sm.jpg')">uv grid</a>
+    
+    <label>Red</label>
+    <input id="redChannel" class="colorSlider" type="range" min="0" max="255" step="1" oninput="colorSliderChanged()"/>
+    <label>Green</label>
+    <input id="greenChannel" class="colorSlider" type="range" min="0" max="255" step="1" oninput="colorSliderChanged()"/>
+    <label>Blue</label>
+    <input id="blueChannel" class="colorSlider" type="range" min="0" max="255" step="1" oninput="colorSliderChanged()"/>
+    
+    <button id="sendToRhino" class="pure-button" onclick="colorMaker('colorFromThreeJS')">Apply to Ronnie!</button>
+
+    <script type="text/javascript" src="js/lib/three.js/three.min.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/OBJLoader.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/OrbitControls.js"></script>
+    <script type="text/javascript" src="js/threejs-rhino.js"></script>
+</div>
+    
+<button class="pure-button" onclick="location.href='./paigntonZoo.html';">Paignton Zoo</button>
 
 <!-- THEME THUMBNAILS -->    
     
@@ -26,33 +49,36 @@
     
     <div class="pure-u-md-1-3">
         <div class="img-with-text">
-            <a href="#" onclick="selectTheme('rainbow')">
-                <img src="img/rhino_stella.jpeg"/> 
+            <a class="theme" href="#" onclick="selectTheme('rainbow')">
                 <p>Rainbow</p>
             </a>
         </div>
     </div>
     <div class="pure-u-md-1-3">
         <div class="img-with-text">
-            <a href="#" onclick="selectTheme('redGreen')">
-                <img src="img/rhino_stella.jpeg"/> 
+            <a class="theme" href="#" onclick="selectTheme('redGreen')">
                 <p>Red Green Flash</p>
             </a>
         </div>
     </div>
     <div class="pure-u-md-1-3">
         <div class="img-with-text">
-            <a href="#" onclick="selectTheme('onePixel')">
-                <img src="img/rhino_stella.jpeg"/> 
+            <a class="theme" href="#" onclick="selectTheme('onePixel')">
                 <p>One pixel</p>
             </a>
         </div>
     </div>
     <div class="pure-u-md-1-3">
         <div class="img-with-text">
-            <a href="#" onclick="selectTheme('3')">
-                <img src="img/rhino_stella.jpeg"/> 
-                <p>3</p>
+            <a class="theme" href="#" onclick="selectTheme('default')">
+                <p>Default</p>
+            </a>
+        </div>
+    </div>
+    <div class="pure-u-md-1-3">
+        <div class="img-with-text">
+            <a class="theme" href="#" onclick="selectTheme('off')">
+                <p>Off</p>
             </a>
         </div>
     </div>

@@ -19,7 +19,15 @@ module.exports = function(display) {
         onePixel : function () {
             log.info("Setting an indiviual pixel");
             return custom.onePixel(display);
-        }
+        },
+        off : function () {
+            log.info("Turn off all pixels");
+            return custom.off(display);
+        },
+        colorFromThreeJS : function (colorString) {
+            log.info("Displaying color from threeJS");
+            return custom.colorFromThreeJS(display, colorString);
+        },
     }
     
 };

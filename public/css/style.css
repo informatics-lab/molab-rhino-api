@@ -1,4 +1,16 @@
 /*
+* -- RHINO INTERACTION --
+**/
+
+.colorSlider {
+    
+}
+
+.interaction-container {
+    width: screen.width;
+}
+
+/*
 * --THUMBNAIL STYLES--
 * 
 */
@@ -12,6 +24,10 @@
     display: block;
     margin: 0 auto;
     width: 150px;
+}
+
+.theme {
+    
 }
 
 /*
