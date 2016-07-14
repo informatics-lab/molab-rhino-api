@@ -1,9 +1,7 @@
 var logger = require('../log/index').logger;
 var log = new logger("displays.pythonServerDisplay");
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
-const DATA_QUERY_STRING_KEY = "data";
+var request = require('request');
 
 module.exports = function (baseUrl, numPixels) {
 
@@ -16,21 +14,15 @@ module.exports = function (baseUrl, numPixels) {
         return ""+r.toString(16)+""+g.toString(16)+""+b.toString(16);
     };
 
-    var write = function (colors) {
-        log.trace("Writing colors to python server [{}]", [baseUrl]);
-        var xhr = new XMLHttpRequest();
-        var url = baseUrl + "?" + DATA_QUERY_STRING_KEY + "=" + colors.join("");
-        log.trace("Getting url [{}]",[url]);
-        xhr.open("GET", url);
-        xhr.send();
-    };
-
     var writeAsPost = function (colors) {
-        log.trace("Writing colors to python server [{}]", [baseUrl]);
-        var xhr = new XMLHttpRequest();
-        log.trace("Posting data to url [{}]",[url]);
-        xhr.open("POST", url);
-        xhr.send(colors.join(""));
+        log.trace("Posting colors to python server at [{}]", [baseUrl]);
+        var params = {
+            url : baseUrl,
+            formData : {
+                data : colors.join("")
+            }
+        };
+        request.post(params);
     };
 
     return {
@@ -43,7 +35,7 @@ module.exports = function (baseUrl, numPixels) {
             colorArray.forEach(function (color) {
                 colors.push(convertColorTo12bit(color));
             });
-            write(colors);
+            writeAsPost(colors);
         },
 
         setPixelToColor: function (pixelNum, color) {
@@ -56,7 +48,7 @@ module.exports = function (baseUrl, numPixels) {
                 colors.push('000');
             }
             colors.push(convertColorTo12bit(color));
-            write(colors);
+            writeAsPost(colors);
         },
 
         setAllPixelsToColor: function (color) {
@@ -66,7 +58,7 @@ module.exports = function (baseUrl, numPixels) {
             for(var i = 0; i < numPixels; i++){
                 colors.push(simpleColor);
             }
-            write(colors);
+            writeAsPost(colors);
         }
     }
 };

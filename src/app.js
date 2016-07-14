@@ -12,15 +12,14 @@ var Twitter = require('twitter');
 var Themes = require('./themes');
 var ThemeServer = Themes.themeServer;
 var ThemeSelector = Themes.themeSelector;
-// var Display = require('./display').pythonServerDisplay;
-var Display = require('./display').arduinoDisplay;
+var Display = require('./display').pythonServerDisplay;
 var EventEmitter = require('events');
 
 
-// var display = new Display("http://172.24.1.1:8000/cgi-bin/panel.py", 80);
-var display = new Display();
+var display = new Display("http://192.168.1.2:8000/", 80);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
+
 
 // read in credentials from env variables
 var credentials = {
@@ -40,7 +39,6 @@ var client = new Twitter(credentials);
 var stream = client.stream('statuses/filter', {track: KEYWORD, language: "en"});
 
 stream.on('data', function (tweet) {
-//    if (tweet.lang === "en") {
         log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
         tweet.text = tweet.text.toLowerCase();
         tweet.text = filter.clean(tweet.text);
@@ -52,7 +50,6 @@ stream.on('data', function (tweet) {
                 themeSelector.guessTheme(tag);
             }
         });
-//    }
 });
 
 stream.on('error', function (error) {
@@ -60,11 +57,9 @@ stream.on('error', function (error) {
     throw error;
 });
 
-// --- END OF COMMENT SECTION ---
-
 io.on('connection', function(socket){
     log.debug('Web ui connected');
-    
+
     myEventEmitter.on('tweet', function(tweet){
         socket.emit('tweet', tweet);
     });
@@ -72,7 +67,7 @@ io.on('connection', function(socket){
     socket.on('selectTheme', function(theme) {
         themeSelector.selectTheme(theme);
     });
-    
+
     socket.on('selectCustomTheme', function(theme) {
         themeSelector.selectCustomTheme(theme);
     });
