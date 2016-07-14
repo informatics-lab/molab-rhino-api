@@ -27,7 +27,7 @@ module.exports = function(display) {
         colorFromThreeJS : function (colorString) {
             log.info("Displaying color from threeJS");
             return custom.colorFromThreeJS(display, colorString);
-        },
+        }
     }
     
 };

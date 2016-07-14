@@ -1,3 +1,5 @@
+var logger = require('../../log/index').logger;
+var log = new logger("themes.custom.rainbow");
 
 var Color = require('color');
 
@@ -36,10 +38,10 @@ module.exports = function(display) {
                 cwi =0;
             }
             display.setAllPixelsToColor(colorWheel(cwi));
-            if (loopNum >= 2 || global.ledInterupt){
+            if (loopNum >= 10 || global.ledInterupt){
                 clearInterval(loop);
                 resolve ();
             }
-        }, 1000/20);
+        }, 1000/10);
     });
 };
