@@ -67,6 +67,7 @@ module.exports = function(display, themeServer) {
         },
 
         selectTheme : function(theme) {
+            clearInterval(global.loop);
             setInterupt ().then(function(){
                     blue()
                 }).then(function(){

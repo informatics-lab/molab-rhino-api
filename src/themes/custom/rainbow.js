@@ -30,6 +30,7 @@ module.exports = function(display) {
         var loopNum = 0;
         var cwi = 0;
         var loop = setInterval(function () {
+            global.loop = loop;
             cwi +=5;
             if (cwi > 255) {
                 loopNum++;

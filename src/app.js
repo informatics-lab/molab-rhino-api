@@ -18,7 +18,7 @@ var EventEmitter = require('events');
 // --- Hard coded pixel number ---
 global.pixelNum = 80;
 
-var display = new Display("http://172.24.1.1:8000/cgi-bin/panel.py", global.pixelNum);
+var display = new Display("http://localhost:8000/cgi-bin/panel.py", global.pixelNum);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 

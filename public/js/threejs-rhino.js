@@ -90,18 +90,6 @@ function setColor(colorString) {
 
 function setMaterial(textureUrl) {
 
-    if (rhino) {
-        console.log("clearing old rhino");
-        // rhino.geometry.dispose();
-        rhino.traverse(function (child) {
-            if (child instanceof THREE.Mesh) {
-                // child.material.map = texture;
-                child.geometry.dispose();
-            }
-        });
-        scene.remove(rhino);
-    }
-
     var manager = new THREE.LoadingManager();
     manager.onProgress = function (item, loaded, total) {
         console.log(item, loaded, total);
@@ -125,6 +113,20 @@ function setMaterial(textureUrl) {
     console.log("Rhino texture is now using", textureUrl);
 
 };
+
+function clearRhino(){
+    if (rhino) {
+    console.log("clearing old rhino");
+    // rhino.geometry.dispose();
+    rhino.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+            // child.material.map = texture;
+            child.geometry.dispose();
+        }
+    });
+    scene.remove(rhino);
+    }
+}
 
 function initalcolor(){
     material = new THREE.MeshPhongMaterial({
