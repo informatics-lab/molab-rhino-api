@@ -12,13 +12,13 @@ var Twitter = require('twitter');
 var Themes = require('./themes');
 var ThemeServer = Themes.themeServer;
 var ThemeSelector = Themes.themeSelector;
-var Display = require('./display').pythonServerDisplay;
+// var Display = require('./display').pythonServerDisplay;
+var Display = require('./display').arduinoDisplay;
 var EventEmitter = require('events');
 
-// --- Hard coded pixel number ---
-global.pixelNum = 80;
 
-var display = new Display("http://localhost:8000/cgi-bin/panel.py", global.pixelNum);
+// var display = new Display("http://172.24.1.1:8000/cgi-bin/panel.py", 80);
+var display = new Display();
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
@@ -30,7 +30,7 @@ var credentials = {
     access_token_secret: process.env.TWITTER_TOKEN_SECRET
 };
 
-const KEYWORD = "wimbledon";
+const KEYWORD = "technoRhino";
 
 var myEventEmitter = new EventEmitter();
 

@@ -24,10 +24,6 @@ module.exports = function(display) {
             log.info("Turn off all pixels");
             return custom.off(display);
         },
-        default : function () {
-            log.info("LED chasing to the end");
-            return custom.default(display);
-        },
         colorFromThreeJS : function (colorString) {
             log.info("Displaying color from threeJS");
             return custom.colorFromThreeJS(display, colorString);

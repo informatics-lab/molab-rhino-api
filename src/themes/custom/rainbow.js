@@ -25,20 +25,18 @@ var colorWheel = function(wheelPosition) {
 
 module.exports = function(display) {
     return new Promise (function(resolve, reject){
+        log.info("Setting pixels to rainbow");
         global.ledInterupt = false;
-        console.log("led interupt value in rainbow", [global.ledInterupt]);
         var loopNum = 0;
         var cwi = 0;
         var loop = setInterval(function () {
-            global.loop = loop;
             cwi +=5;
             if (cwi > 255) {
                 loopNum++;
                 cwi =0;
             }
             display.setAllPixelsToColor(colorWheel(cwi));
-            if (loopNum >= 1 || global.ledInterupt){
-                console.log("Exiting rainbow");
+            if (loopNum >= 2 || global.ledInterupt){
                 clearInterval(loop);
                 resolve ();
             }

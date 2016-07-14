@@ -39,11 +39,7 @@ module.exports = function(display, themeServer) {
     };
 
     var setInterupt = function () {
-        return new Promise(function(resolve, reject){
             global.ledInterupt = true;
-            log.info("Setting LED interupt");
-            return resolve();
-        });
     };
     
     return {
@@ -67,24 +63,23 @@ module.exports = function(display, themeServer) {
         },
 
         selectTheme : function(theme) {
-            clearInterval(global.loop);
-            setInterupt ().then(function(){
-                    blue()
-                }).then(function(){
+            setInterupt ();
+            blue().then(function(){
                     return themeServer[theme]();
                 }).then(function(){
                     off();
                 });
         },
-        
+
         selectCustomTheme : function(theme) {
             setInterupt ();
             blue().then(function(){
                 return themeServer[theme.theme](theme.colorString);
-                }).then(function(){
-                    off();
+            }).then(function(){
+                off();
             });
         }
+        
     }
 
 };
