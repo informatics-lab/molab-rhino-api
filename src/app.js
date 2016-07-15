@@ -29,7 +29,7 @@ var credentials = {
     access_token_secret: process.env.TWITTER_TOKEN_SECRET
 };
 
-const KEYWORD = "technoRhino";
+const KEYWORD = "javascript";
 
 var myEventEmitter = new EventEmitter();
 

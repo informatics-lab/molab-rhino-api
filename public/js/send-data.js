@@ -44,9 +44,13 @@ function colorSliderChanged() {
     green = green >> 4;
     blue = blue >> 4;
     var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
-    setColor("#" + red.toString(16) + green.toString(16) + blue.toString(16));
     console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
     return colorString;
+}
+
+function colorForThreejs(){
+    var colorString = colorSliderChanged();
+    setColor(colorString);
 }
 
 function colorMaker(theme) {

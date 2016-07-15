@@ -1,18 +1,34 @@
 /*
-* -- RHINO INTERACTION --
-**/
+* -- THREEJS RHINO --
+*/
+
+.interaction-container {
+    width: screen.width;
+    padding: 10px;
+}
 
 .colorSlider {
     
 }
 
-.interaction-container {
-    width: screen.width;
+#redChannel {
+    
+}
+
+#blueChannel {
+    
+}
+
+#greenChannel {
+    
+}
+
+#sendToRhino {
+    
 }
 
 /*
-* --THUMBNAIL STYLES--
-* 
+* --MAIN PAGE STYLES--
 */
 
 .img-with-text {
@@ -31,8 +47,13 @@
 }
 
 /*
+* -- COLOR SLIDERS STYLES --
+*/
+
+
+
+/*
 *--TWITTER STYLES --
-*
 */
 
 .tweet-container {
@@ -45,5 +66,5 @@
 }
 
 .tweet {
-    border: 2px solid grey;
+    border: 1px solid grey;
 }
