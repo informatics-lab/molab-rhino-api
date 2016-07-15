@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var filter = require('profanity-filter');
+var swearjar = require('swearjar');
 
 var Twitter = require('twitter');
 var Themes = require('./themes');
@@ -29,6 +29,8 @@ var credentials = {
     access_token_secret: process.env.TWITTER_TOKEN_SECRET
 };
 
+swearjar.loadBadWords('./config/en_US.json');
+
 const KEYWORD = "technoRhino";
 
 var myEventEmitter = new EventEmitter();
@@ -41,7 +43,7 @@ var stream = client.stream('statuses/filter', {track: KEYWORD, language: "en"});
 stream.on('data', function (tweet) {
         log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
         tweet.text = tweet.text.toLowerCase();
-        tweet.text = filter.clean(tweet.text);
+        tweet.text = swearjar.censor(tweet.text);
         myEventEmitter.emit('tweet', tweet);
         tweet.entities.hashtags.forEach(function (hashtag) {
             var tag = hashtag.text.toLowerCase();
