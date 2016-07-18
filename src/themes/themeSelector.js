@@ -73,13 +73,8 @@ module.exports = function(display, themeServer) {
 
         selectCustomTheme : function(theme) {
             setInterupt ();
-            blue().then(function(){
-                return themeServer[theme.theme](theme.colorString);
-            }).then(function(){
-                off();
-            });
-        }
-        
+            themeServer[theme.theme](theme.colorString)
+        }  
     }
 
 };

@@ -18,19 +18,8 @@ function showValue(val,slidernum,vertical) {
 	var filloffset = 0;
 	var bordersize = 0;
 	var loc = vertical ? (1 - pc) * tracksize : pc * tracksize;
-	//var degrees = 360 * pc;
-	//var rotation = "rotate(" + degrees + "deg)";
-	
 	rangevalue.innerHTML = val;
 	
-	//thumb.style.webkitTransform = rotation;
-	//thumb.style.MozTransform = rotation;
-	//thumb.style.msTransform = rotation;
-	
-	//fill.style.opacity = pc + 0.2 > 1 ? 1 : pc + 0.2;
-	
-	//rangevalue.style.top = (vertical ? loc : 0) + "px";
-	//rangevalue.style.left = (vertical ? 0 : loc) + "px";
 	thumb.style.top =  (vertical ? loc : 0) + "px";
 	thumb.style.left = (vertical ? 0 : loc) + "px";
 	fill.style.top = (vertical ? loc + (thumbsize/2) : filloffset + bordersize) + "px";
@@ -57,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function(){
   setValue(128,3,false);
 })
 
-function colorOutputFromSlider(theme) {
+function colorOutputFromSlider() {
     var red = document.getElementById('slider1').value;
     var green = document.getElementById('slider2').value;
     var blue = document.getElementById('slider3').value;
@@ -65,5 +54,10 @@ function colorOutputFromSlider(theme) {
     green = green >> 4;
     blue = blue >> 4;
     var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
+    return colorString;
+}
+
+function sendColorToRhino(theme) {
+    var colorString = colorOutputFromSlider()
     socket.emit('selectCustomTheme', {'theme': theme, 'colorString': colorString} );
 }

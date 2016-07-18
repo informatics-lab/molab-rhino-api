@@ -7,7 +7,7 @@
     position:absolute;
     left:0px;
     top:0px;
-    overflow:visible;
+    overflow:hidden;
     z-index:100;
 }
 
@@ -25,33 +25,33 @@ to provide a positioning context for the range input and other elements.*/
 .slidertrack {
     height: 40px;
     border:1px solid #666;
-    border-radius:10px;
+    border-radius:50px;
     position:absolute;
+    overflow:hidden;
 }
 
 /* .sliderfill adds color (or a gradient as seen here) to the track as the user 
 	drags the thumb. */
 .sliderfill {
-    /*border:1px solid green;*/
-    border-radius:10px;
+    border-radius:50px;
 	position:absolute;
     pointer-events:none;
-	/*background: green;*/
+	overflow:hidden;
 }
 
 #sliderfill1 {
-    border:1px solid red;
-    background: red;
+    border:1px solid rgb(252,13,27);
+    background: rgb(252,13,27);
 }
 
 #sliderfill2 {
-    border:1px solid green;
-    background: green;
+    border:1px solid rgb(41,253,46);
+    background: rgb(41,253,46);
 }
 
 #sliderfill3 {
-    border:1px solid blue;
-    background: blue;
+    border:1px solid rgb(11,36,251);
+    background: rgb(11,36,251);
 }
 
 /* .sliderthumb can be any css you like including an image. 
@@ -68,7 +68,7 @@ to provide a positioning context for the range input and other elements.*/
     left:0px;
     top:0px;
     border:1px solid silver;
-    border-radius: 10px;
+    border-radius: 50px;
 	padding:0px;
     margin:0px;
     text-align:center;
@@ -135,7 +135,10 @@ body {
 td, 
 tr, 
 th {
-    width:400px;
+    text-align: center;
+    margin-left:auto; 
+    margin-right:auto;
+    width:250px;
     border:0 none !important;
     padding: 10px;
 }

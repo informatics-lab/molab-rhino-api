@@ -17,7 +17,7 @@ module.exports = function(display) {
             global.loop = loop;
             if (loopnum % 2 == 0){
                 display.setAllPixelsToColor(Color("black"));
-                display.setPixelToColor(getRandomPixel(0, global.pixelNum-1), Color("red")); 
+                display.setPixelToColor(getRandomPixel(0, 80-1), Color("red")); 
             }
             else {
                 display.setAllPixelsToColor(Color("green"));
