@@ -13,10 +13,11 @@ var Themes = require('./themes');
 var ThemeServer = Themes.themeServer;
 var ThemeSelector = Themes.themeSelector;
 var Display = require('./display').pythonServerDisplay;
+// var Display = require('./display').arduinoDisplay;
 var EventEmitter = require('events');
 
-
-var display = new Display("http://192.168.1.2:8000/", 80);
+// var display = new Display();     //for arduino
+var display = new Display("http ://192.168.1.2:8000/", 80);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
@@ -41,8 +42,7 @@ var client = new Twitter(credentials);
 var stream = client.stream('statuses/filter', {track: KEYWORD, language: "en"});
 
 stream.on('data', function (tweet) {
-        log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
-        tweet.text = tweet.text.toLowerCase();
+        log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
         tweet.text = swearjar.censor(tweet.text);
         myEventEmitter.emit('tweet', tweet);
         tweet.entities.hashtags.forEach(function (hashtag) {
@@ -70,8 +70,12 @@ io.on('connection', function(socket){
         themeSelector.selectTheme(theme);
     });
 
-    socket.on('selectCustomTheme', function(theme) {
-        themeSelector.selectCustomTheme(theme);
+    socket.on('selectColor', function(color) {
+        themeSelector.selectColor(color);
+    });
+
+    socket.on('selectOff', function() {
+        themeSelector.selectOff();
     });
 
     socket.on('disconnect', function(){
