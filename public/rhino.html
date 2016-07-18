@@ -2,18 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rhino</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Met Office :: Informatics Lab :: Threejs Rhino </title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/threejsStyle.css">
 </head>
 <body>
-<h1>Rhino Page</h1>
-<a href="#" onclick="setMaterial('data/union-jack.png')">union jack</a>
-<a href="#" onclick="setMaterial('data/UV_Grid_Sm.jpg')">uv grid</a>
+    
+<!-- SCRIPTS --> 
 
-<script type="text/javascript" src="js/lib/three.js/three.min.js"></script>
-<script type="text/javascript" src="js/lib/three.js/OBJLoader.js"></script>
+<script type="text/javascript" src="js/send-data.js"></script>
+<script type="text/javascript" src="js/lib/socket.io-client/socket.io.js"></script>    
 
-<script type="text/javascript" src="js/lib/three.js/OrbitControls.js"></script>
+<!-- RHINO INTERACTION -->
 
-<script type="text/javascript" src="js/threejs-rhino.js"></script>
+<div class="interaction-container">
+    <!--<a href="#" onclick="setMaterial('data/union-jack.png')">union jack</a>
+    <a href="#" onclick="setMaterial('data/UV_Grid_Sm.jpg')">uv grid</a>-->
+
+    <label>Red</label>
+    <input id="redChannel" class="colorSlider" type="range" min="0" max="255" step="1" oninput="colorForThreejs()"/>
+    <label>Green</label>
+    <input id="greenChannel" class="colorSlider" type="range" min="0" max="255" step="1" oninput="colorForThreejs()"/>
+    <label>Blue</label>
+    <input id="blueChannel" class="colorSlider" type="range" min="0" max="255" step="1" oninput="colorForThreejs()"/>
+
+    <button id="sendToRhino" class="pure-button" onclick="colorMaker('colorFromThreeJS')">Apply to Ronnie!</button>
+
+    <script type="text/javascript" src="js/lib/three.js/three.min.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/OBJLoader.js"></script>
+    <script type="text/javascript" src="js/lib/three.js/OrbitControls.js"></script>
+    <script type="text/javascript" src="js/threejs-rhino.js"></script>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,144 @@
+@charset "UTF-8";
+/* CSS by Steven Estrella. http://www.stevenestrella.com */
+/* The .slider and .slidervertical classes are for the range inputs. 
+	Set the z-index high so its on top. */
+.slider, 
+.slidervertical {
+    position:absolute;
+    left:0px;
+    top:0px;
+    overflow:hidden;
+    z-index:100;
+}
+
+/* slidershell exists only
+to provide a positioning context for the range input and other elements.*/
+.slidershell {
+    border:0 none;
+    position:relative;
+    left:0px;
+    top:0px;
+    overflow:visible;
+}
+
+/* .slidertrack is the visible track on which the user drags the thumb button. */
+.slidertrack {
+    height: 40px;
+    border:1px solid #666;
+    border-radius:50px;
+    position:absolute;
+    overflow:hidden;
+}
+
+/* .sliderfill adds color (or a gradient as seen here) to the track as the user 
+	drags the thumb. */
+.sliderfill {
+    border-radius:50px;
+	position:absolute;
+    pointer-events:none;
+	overflow:hidden;
+}
+
+#sliderfill1 {
+    border:1px solid rgb(252,13,27);
+    background: rgb(252,13,27);
+}
+
+#sliderfill2 {
+    border:1px solid rgb(41,253,46);
+    background: rgb(41,253,46);
+}
+
+#sliderfill3 {
+    border:1px solid rgb(11,36,251);
+    background: rgb(11,36,251);
+}
+
+/* .sliderthumb can be any css you like including an image. 
+	The dimensions must match those found in the rule for 
+	input[type=range]::-webkit-slider-thumb. */
+.sliderthumb {
+    width:40px;
+    height:40px;
+    background-size: 40px 40px;
+	background-position:0px 0px;
+	background-repeat: no-repeat;
+    background-color:silver;
+	position:absolute;
+    left:0px;
+    top:0px;
+    border:1px solid silver;
+    border-radius: 50px;
+	padding:0px;
+    margin:0px;
+    text-align:center;
+	pointer-events:none;
+}
+
+.slidervalue {
+    font-size:0px;
+}
+
+/* ----------------------------------------------------------*/
+
+/* First we have to make transparent all the default elements of the range input.
+	We use color:transparent to eliminate the default tick marks in IE. */
+
+input[type=range]::-ms-track {
+	width:100%;height:100%;
+	-webkit-appearance:none;margin:0px;padding:0px;border:0 none;
+	background:transparent;color:transparent;overflow:visible;
+}
+input[type=range]::-moz-range-track {
+	width:100%;height:100%;
+	-moz-appearance:none;margin:0px;padding:0px;border:0 none;
+	background:transparent;color:transparent;overflow:visible;
+}
+input[type=range] {
+	width:100%;height:100%;
+	-webkit-appearance:none;margin:0px;padding:0px;border:0 none;
+	background:transparent;color:transparent;overflow:visible;
+}
+/* we need a separate rule for when the range input is to be vertical */
+input[type=range].slidervertical {
+	-webkit-appearance: slider-vertical;
+	writing-mode: bt-lr; /* IE */
+	opacity:0.01; /* needed to hide the default slider-vertical appearance */
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background:transparent;border:transparent;}
+input[type=range]:focus {outline: none;}
+	
+/* Make the thumbs the same size as your custom sliderthumb. 
+	they will not be visible but they will be draggable. 	*/
+input[type=range]::-ms-thumb {width:40px;height:40px;
+	border-radius:0px;border:0 none;background:transparent;}
+input[type=range]::-moz-range-thumb {width:40px;height:40px;
+	border-radius:0px;border:0 none;background:transparent;}	
+input[type=range]::-webkit-slider-thumb {width:40px;height:40px;
+	border-radius:0px;border:0 none;background:transparent;-webkit-appearance:none;}
+
+/* microsoft IE10+ and Edge - eliminates default fills before and after thumb */
+input[type=range]::-ms-fill-lower {background:transparent;border:0 none;}
+input[type=range]::-ms-fill-upper {background:transparent;border:0 none;}
+input[type=range]::-ms-tooltip { display: none;}
+
+/* ----------------------------------------------------------*/
+
+/* other rules you may need for page styling */
+body {
+    font-family:sans-serif;
+}
+
+.slider2column, 
+td, 
+tr, 
+th {
+    text-align: center;
+    margin-left:auto; 
+    margin-right:auto;
+    width:250px;
+    border:0 none !important;
+    padding: 10px;
+}

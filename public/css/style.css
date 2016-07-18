@@ -1,42 +1,44 @@
 /*
-* -- RHINO INTERACTION --
-**/
-
-.colorSlider {
-    
-}
-
-.interaction-container {
-    width: screen.width;
-}
-
-/*
-* --THUMBNAIL STYLES--
-* 
+* --MAIN PAGE STYLES--
 */
 
-.img-with-text {
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.pure-g > div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 1em;
+    width: 150px;
     text-align: center;
-    width: 150px;
+    margin-left:auto; 
+    margin-right:auto;
 }
 
-.img-with-text img {
-    display: block;
-    margin: 0 auto;
-    width: 150px;
+.button-theme {
+    color: black;
+    border-radius: 20px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.theme {
-    
+.button-twitter {
+    border-radius: 20px;
+    margin-left:auto; 
+    margin-right:auto;
 }
 
 /*
 *--TWITTER STYLES --
-*
 */
 
 .tweet-container {
     margin:10px 10px 15px;
+    text-align: center;
+    margin-left:auto; 
+    margin-right:auto;
 }
 
 #tweetDisplay {
@@ -45,5 +47,5 @@
 }
 
 .tweet {
-    border: 2px solid grey;
+    border: 1px solid grey;
 }
