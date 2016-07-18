@@ -6,17 +6,18 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var filter = require('profanity-filter');
+var swearjar = require('swearjar');
 
 var Twitter = require('twitter');
 var Themes = require('./themes');
 var ThemeServer = Themes.themeServer;
 var ThemeSelector = Themes.themeSelector;
 var Display = require('./display').pythonServerDisplay;
+// var Display = require('./display').arduinoDisplay;
 var EventEmitter = require('events');
 
-
-var display = new Display("http://192.168.1.2:8000/", 80);
+// var display = new Display();     //for arduino
+var display = new Display("http ://192.168.1.2:8000/", 80);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
@@ -29,7 +30,9 @@ var credentials = {
     access_token_secret: process.env.TWITTER_TOKEN_SECRET
 };
 
-const KEYWORD = "javascript";
+swearjar.loadBadWords('./config/en_US.json');
+
+const KEYWORD = "technoRhino";
 
 var myEventEmitter = new EventEmitter();
 
@@ -39,9 +42,8 @@ var client = new Twitter(credentials);
 var stream = client.stream('statuses/filter', {track: KEYWORD, language: "en"});
 
 stream.on('data', function (tweet) {
-        log.info("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
-        tweet.text = tweet.text.toLowerCase();
-        tweet.text = filter.clean(tweet.text);
+        log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
+        tweet.text = swearjar.censor(tweet.text);
         myEventEmitter.emit('tweet', tweet);
         tweet.entities.hashtags.forEach(function (hashtag) {
             var tag = hashtag.text.toLowerCase();
@@ -68,8 +70,12 @@ io.on('connection', function(socket){
         themeSelector.selectTheme(theme);
     });
 
-    socket.on('selectCustomTheme', function(theme) {
-        themeSelector.selectCustomTheme(theme);
+    socket.on('selectColor', function(color) {
+        themeSelector.selectColor(color);
+    });
+
+    socket.on('selectOff', function() {
+        themeSelector.selectOff();
     });
 
     socket.on('disconnect', function(){

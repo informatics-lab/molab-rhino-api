@@ -12,21 +12,9 @@ module.exports = function(display) {
             log.info("Setting all pixels to rainbow");
             return custom.rainbow(display);
         },
-        redGreen : function () {
-            log.info("Setting all pixels to red-green flash");
-            return custom.redGreen(display);
-        },
-        onePixel : function () {
-            log.info("Setting an indiviual pixel");
-            return custom.onePixel(display);
-        },
-        off : function () {
-            log.info("Turn off all pixels");
-            return custom.off(display);
-        },
-        colorFromThreeJS : function (colorString) {
-            log.info("Displaying color from threeJS");
-            return custom.colorFromThreeJS(display, colorString);
+        stars : function () {
+            log.info("Setting pixels to stars");
+            return custom.stars(display);
         }
     }
     

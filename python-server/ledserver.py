@@ -29,8 +29,6 @@ def setPanel(strip, data):
 @app.route('/', methods=['POST', 'GET'])
 def hello_world():
     if request.method == 'POST':
-	print str(request.__dict__)
-        print request.form.keys()
         setPanel(strip, request.form['data'])
         return request.form['data']
     else:

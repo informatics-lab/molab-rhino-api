@@ -27,6 +27,8 @@ module.exports = function (baseUrl, numPixels) {
 
     return {
 
+        numPixels : numPixels,
+
         setPixelsToColorArray: function (colorArray) {
             if (colorArray.length > numPixels) {
                 throw "pixelColorArray may not contain more elements than " + numPixels;

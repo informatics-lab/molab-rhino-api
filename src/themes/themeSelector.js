@@ -10,7 +10,7 @@ module.exports = function(display, themeServer) {
         return new Promise(function(resolve, reject){
             log.info("Setting all pixels to red");
             display.setAllPixelsToColor(Color("red"));
-            setTimeout(resolve(), COLOR_FLASH_LENGTH);
+            setTimeout(function () {resolve()}, COLOR_FLASH_LENGTH);
         });
     };
 
@@ -18,7 +18,7 @@ module.exports = function(display, themeServer) {
         return new Promise(function(resolve, reject){
             log.info("Setting all pixels to green");
             display.setAllPixelsToColor(Color("green"));
-            setTimeout(resolve(), COLOR_FLASH_LENGTH);
+            setTimeout(function () {resolve()}, COLOR_FLASH_LENGTH);
         });
     };
 
@@ -26,7 +26,7 @@ module.exports = function(display, themeServer) {
         return new Promise(function(resolve, reject){
             log.info("Setting all pixels to blue");
             display.setAllPixelsToColor(Color("blue"));
-            setTimeout(resolve(), COLOR_FLASH_LENGTH);
+            setTimeout(function () {resolve()}, COLOR_FLASH_LENGTH);
         });
     };
     
@@ -39,7 +39,10 @@ module.exports = function(display, themeServer) {
     };
 
     var setInterupt = function () {
-            global.ledInterupt = true;
+        if(global.ledTheme) {
+            clearInterval(global.ledTheme);
+            global.ledTheme = null;
+        }
     };
     
     return {
@@ -71,10 +74,16 @@ module.exports = function(display, themeServer) {
                 });
         },
 
-        selectCustomTheme : function(theme) {
+        selectColor : function(color) {
             setInterupt ();
-            themeServer[theme.theme](theme.colorString)
-        }  
+            display.setAllPixelsToColor(Color(color));
+        },
+
+        selectOff : function() {
+            setInterupt();
+            off();
+        }
+        
     }
 
 };

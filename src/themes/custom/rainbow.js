@@ -1,3 +1,8 @@
+/*
+ * Rainbow theme :
+ * All pixels fade through all colours in sync.
+ */
+
 var logger = require('../../log/index').logger;
 var log = new logger("themes.custom.rainbow");
 
@@ -28,18 +33,19 @@ var colorWheel = function(wheelPosition) {
 module.exports = function(display) {
     return new Promise (function(resolve, reject){
         log.info("Setting pixels to rainbow");
-        global.ledInterupt = false;
         var loopNum = 0;
         var cwi = 0;
         var loop = setInterval(function () {
+            global.ledTheme = loop;
             cwi +=5;
             if (cwi > 255) {
                 loopNum++;
                 cwi =0;
             }
             display.setAllPixelsToColor(colorWheel(cwi));
-            if (loopNum >= 10 || global.ledInterupt){
+            if (loopNum >= 10){
                 clearInterval(loop);
+                global.ledTheme = null;
                 resolve ();
             }
         }, 1000/10);

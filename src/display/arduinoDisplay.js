@@ -8,13 +8,9 @@ var pixel = require("node-pixel");
 
 const NUM_PIXELS = 60;
 const DATA_PIN = 6;
-const PORT = '/dev/cu.usbmodem1411';
+const PORT = '/dev/cu.usbmodem1421';
 
 module.exports = function () {
-
-    // var port = new SerialPort(PORT, {
-    //     baudRate: 115200
-    // });
 
     var board = new five.Board({
         port: PORT
@@ -42,6 +38,8 @@ module.exports = function () {
     });
 
     return {
+
+        numPixels : NUM_PIXELS,
 
         setPixelsToColorArray: function (colorArray) {
             if (colorArray.length > NUM_PIXELS) {
