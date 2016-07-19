@@ -6,8 +6,6 @@
     
     <title>Met Office :: Informatics Lab :: Themes </title>
     
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sliderStyle.css">
 </head>
@@ -22,11 +20,9 @@
 
 <!-- CHANGE PAGE BUTTON -->     
     
-<div class="pure-g">
-    <div class="pure-u-1 pure-u-md-1-3">
-        <a class="button-page pure-button" onclick="location.href='./tweets.html'";>or tweet to change the pattern</a>    
-    </div>
-</div>
+<a class="button-to-tweets" onclick="location.href='./tweets.html'";>
+    <img src="img/assets/ipad-rhino-3-assets-10.png">
+</a>    
   
 <!-- SLIDERS -->
     
@@ -34,7 +30,7 @@
 <tr><td>
 <div class="slidershell" id="slidershell1">
 	<div class="sliderfill" id="sliderfill1"></div>
-	<div class="slidertrack" id="slidertrack1"></div>
+	<div class="slidertrack grad" id="slidertrack1"></div>
 	<div class="sliderthumb" id="sliderthumb1"></div>
 	<div class="slidervalue" id="slidervalue1"></div>
 	<input class="slider" id="slider1" type="range" min="0" max="255" step="1" onchange="showValue(value,1,false);colorOutputFromSlider()" />
@@ -42,7 +38,7 @@
 <p>&nbsp;</p>    
 <div class="slidershell" id="slidershell2">
 	<div class="sliderfill" id="sliderfill2"></div>
-	<div class="slidertrack" id="slidertrack2"></div>
+	<div class="slidertrack grad" id="slidertrack2"></div>
 	<div class="sliderthumb" id="sliderthumb2"></div>
 	<div class="slidervalue" id="slidervalue2"></div>
 	<input class="slider" id="slider2" type="range" min="0" max="255" step="1" onchange="showValue(value,2,false);colorOutputFromSlider()" />
@@ -50,7 +46,7 @@
 <p>&nbsp;</p>    
 <div class="slidershell" id="slidershell3">
 	<div class="sliderfill" id="sliderfill3"></div>
-	<div class="slidertrack" id="slidertrack3"></div>
+	<div class="slidertrack grad" id="slidertrack3"></div>
 	<div class="sliderthumb" id="sliderthumb3"></div>
 	<div class="slidervalue" id="slidervalue3"></div>
 	<input class="slider" id="slider3" type="range" min="0" max="255" step="1" onchange="showValue(value,3,false);colorOutputFromSlider()" />
@@ -61,17 +57,15 @@
 <!-- THEMES -->    
     
 <div class="theme-container">
-        <a class="button-theme" href="#" onclick="selectTheme('rainbow')">
-            <img class="rainbow-btn" src="img/assets/rainbow-btn.png" onmouseover="this.src='img/assets/rainbow-btn-pressed.png'" onmouseout="this.src='img/assets/rainbow-btn.png'"/>
-        </a>
-
-        <a class="button-theme" href="#" onclick="selectTheme('redGreen')">
-            <img class="rhino-no-btn" src="img/assets/rhino-no-btn.png" onmouseover="this.src='img/assets/rhino-no-btn-pressed.png'" onmouseout="this.src='img/assets/rhino-no-btn.png'"/>
-        </a>
-
-        <a class="button-theme" href="#" onclick="selectTheme('onePixel')">
-            <img class="water-btn" src="img/assets/water-btn.png" onmouseover="this.src='img/assets/water-btn-pressed.png'" onmouseout="this.src='img/assets/water-btn.png'"/>
-        </a>
+    <a class="button-theme" href="#" onclick="selectTheme('rainbow')">
+        <img class="rainbow-btn" src="img/assets/rainbow-btn.png" onmouseover="this.src='img/assets/rainbow-btn-pressed.png'" onmouseout="this.src='img/assets/rainbow-btn.png'"/>
+    </a>
+    <a class="button-theme" href="#" onclick="selectTheme('redGreen')">
+        <img class="rhino-no-btn" src="img/assets/rhino-no-btn.png" onmouseover="this.src='img/assets/rhino-no-btn-pressed.png'" onmouseout="this.src='img/assets/rhino-no-btn.png'"/>
+    </a>
+    <a class="button-theme" href="#" onclick="selectTheme('stars')">
+        <img class="water-btn" src="img/assets/water-btn.png" onmouseover="this.src='img/assets/water-btn-pressed.png'" onmouseout="this.src='img/assets/water-btn.png'"/>
+    </a>
 </div>
 
 </body>

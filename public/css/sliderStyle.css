@@ -23,11 +23,21 @@ to provide a positioning context for the range input and other elements.*/
 
 /* .slidertrack is the visible track on which the user drags the thumb button. */
 .slidertrack {
-    height: 40px;
-    border:1px solid #666;
+    height: 42px;
+    /*border:1px solid white;*/
     border-radius:50px;
     position:absolute;
     overflow:hidden;
+    
+    z-index: 90;
+}
+
+.grad {
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(rgb(179,179,179), rgb(230,230,230)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgb(179,179,179), rgb(230,230,230)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgb(179,179,179), rgb(230,230,230)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgb(179,179,179), rgb(230,230,230)); /* Standard syntax */
 }
 
 /* .sliderfill adds color (or a gradient as seen here) to the track as the user 
@@ -37,20 +47,21 @@ to provide a positioning context for the range input and other elements.*/
 	position:absolute;
     pointer-events:none;
 	overflow:hidden;
+    z-index: 98;
 }
 
 #sliderfill1 {
-    border:1px solid rgb(252,13,27);
+    /*border:1px solid rgb(252,13,27);*/
     background: rgb(252,13,27);
 }
 
 #sliderfill2 {
-    border:1px solid rgb(41,253,46);
+    /*border:1px solid rgb(41,253,46);*/
     background: rgb(41,253,46);
 }
 
 #sliderfill3 {
-    border:1px solid rgb(11,36,251);
+    /*border:1px solid rgb(11,36,251);*/
     background: rgb(11,36,251);
 }
 
@@ -60,19 +71,21 @@ to provide a positioning context for the range input and other elements.*/
 .sliderthumb {
     width:40px;
     height:40px;
+    background-image: url('../img/assets/ipad-rhino-3-assets-09.png');
     background-size: 40px 40px;
 	background-position:0px 0px;
 	background-repeat: no-repeat;
-    background-color:silver;
+    background-color: transparent;
 	position:absolute;
     left:0px;
     top:0px;
-    border:1px solid silver;
+    /*border:1px solid silver;*/
     border-radius: 50px;
 	padding:0px;
     margin:0px;
     text-align:center;
 	pointer-events:none;
+    z-index: 99;
 }
 
 .slidervalue {
@@ -136,12 +149,10 @@ td,
 tr, 
 th {
     text-align: center;
-    margin-left:auto; 
-    margin-right:auto;
     width:250px;
     border:0 none !important;
-    padding: 10px;
     position: fixed;
     top: 450px;
-    left: 250px;
+    left: 50%;
+    margin-left: -125px;
 }

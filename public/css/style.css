@@ -1,6 +1,10 @@
 /*
 * --MAIN PAGE STYLES--
 */
+body {
+  font-family: courier;
+}
+
 .sliderBackg {
     background-image: url("../img/assets/ipad-rhino-slider-backg.png");
     background-size: 768px 1024px;
@@ -15,77 +19,130 @@
     background-attachment: fixed;
 }
 
-.button-page {
-    border-radius: 20px;
-    margin-left:auto; 
-    margin-right:auto;
+.button-to-tweets {
     position: fixed;
+    text-align: center;
+    width: 500px;
     top: 300px;
-    left: 250px;
+    left: 50%;
+    margin-left: -250px;
+}
+
+.button-to-tweets img {
+    height: 50px;
+    width: 500px;
+}
+
+.button-to-index {
+    position: fixed;
+    text-align: center;
+    width: 500px;
+    top: 300px;
+    left: 50%;
+    margin-left: -250px;
+}
+
+.button-to-index img{
+    height: 40px;
+    width: 500px;
 }
 
 .theme-hashtags {
     position: fixed;
-    top: 800px;
-    left: 250px;
+    margin: 0 auto;
     text-align: center;
+    width: 100%;
+    top: 790px;
+    color: rgb(38,161,208);
 }
 
 /*
-* -- THEME BUTTONS --
+* -- THEME STYLES --
 */
 
-.theme-container {
-    position: relative;
-    width: 100%;
+.theme-container {   
+    text-align: center;
+    position: fixed;
+    width: 700px; 
+    top: 600px;
+    left: 50%;
+    margin-left: -450px;
 }
 
 .button-theme {
     position: absolute;
-    left: 200px;
 }
 
 .button-theme img {
     height: 50px;
-    width: 150px;
+    width: 200px;
 }
 
 .rainbow-btn {
     position: fixed;
-    top: 800px;
-    left: 100px;
+    top: 770px;
+    left: 80px;
 }
 
 .rhino-no-btn {
     position: fixed;
-    top: 800px;
-    left: 250px;
+    top: 820px;
 }
 
 .water-btn {
     position: fixed;
-    top: 800px;
-    left: 400px;
+    top: 770px;
+    right: 80px;
 }
 
 /*
 *--TWITTER STYLES --
 */
 .tweet-container {
-    margin:10px 10px 15px;
     text-align: center;
-    margin-left:auto; 
-    margin-right:auto;
     position: fixed;
-    top: 450px;
-    left: 250px;
+    top: 430px;
+    width:500px;
+    left:50%;
+    margin-left: -250px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    
 }
 
 #tweetDisplay {
     overflow-y: scroll; 
-    height:400px;
+    height:300px;
 }
 
 .tweet {
-    border: 1px solid grey;
+    text-align: left;
+}
+
+.tweet img {
+    float: left;
+    padding:5px;
+    padding-right:10px;
+}
+
+.tweet p {
+    margin-left: 60px;
+}
+
+.userName {
+    font-weight: bold;
+    font-size:1.2em;
+    padding-right: 10px;
+}
+
+.screenName {
+    font-size:1em;
+}
+
+.timeStamp {
+    font-size:0.8em;
+    float: right;
+    font-weight: lighter;
+    padding-right: 5px;
+    padding-top: 5px;
 }
