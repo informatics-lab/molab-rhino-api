@@ -30,7 +30,7 @@ function selectTheme(theme) {
 function tweetToHtml(tweet) {
     var html = '<div class="tweet">';
     html = html + '<img src="'+tweet.user.profile_image_url+'" />';
-    html = html + '<span><span class="userName">' + tweet.user.name + '</span>' + '<span class="screenName">' + '@' + tweet.user.screen_name + '</span></span>';
+    html = html + '<span><span class="userName">' + tweet.user.name + '</span>' + '<span class="screenName">' + '@' + tweet.user.screen_name + '</span>' + '<span class="timeStamp">' + tweet.created_at.substring(0,10) + '</span></span>';
     html = html + '<p>' + tweet.text + '</p>';
     html = html + '</div>';
     return html;
@@ -44,16 +44,6 @@ function colorSliderChanged() {
     green = green >> 4;
     blue = blue >> 4;
     var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
+    socket.emit('selectColor', colorString);
     console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
-    return colorString;
-}
-
-function colorForThreejs(){
-    var colorString = colorSliderChanged();
-    setColor(colorString);
-}
-
-function colorMaker(theme) {
-    var colorString = colorSliderChanged();
-    socket.emit('selectCustomTheme', {'theme': theme, 'colorString': colorString} );
 }

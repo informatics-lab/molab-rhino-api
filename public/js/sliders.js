@@ -12,7 +12,7 @@ function showValue(val,slidernum,vertical) {
 	var pc = val/(slider.max - slider.min); /* the percentage slider value */
 	var thumbsize = 40; /* must match the thumb size in your css */
 	var bigval = 250; /* widest or tallest value depending on orientation */
-	var smallval = 40; /* narrowest or shortest value depending on orientation */
+	var smallval = 42; /* narrowest or shortest value depending on orientation */
 	var tracksize = bigval - thumbsize;
 	var fillsize = 40;
 	var filloffset = 0;
@@ -54,10 +54,7 @@ function colorOutputFromSlider() {
     green = green >> 4;
     blue = blue >> 4;
     var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
-    return colorString;
+    socket.emit('selectColor', colorString);
+    console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
 }
 
-function sendColorToRhino(theme) {
-    var colorString = colorOutputFromSlider()
-    socket.emit('selectCustomTheme', {'theme': theme, 'colorString': colorString} );
-}
