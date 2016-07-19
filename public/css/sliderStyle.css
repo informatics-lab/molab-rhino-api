@@ -24,7 +24,6 @@ to provide a positioning context for the range input and other elements.*/
 /* .slidertrack is the visible track on which the user drags the thumb button. */
 .slidertrack {
     height: 42px;
-    /*border:1px solid white;*/
     border-radius:50px;
     position:absolute;
     overflow:hidden;
@@ -51,17 +50,14 @@ to provide a positioning context for the range input and other elements.*/
 }
 
 #sliderfill1 {
-    /*border:1px solid rgb(252,13,27);*/
     background: rgb(252,13,27);
 }
 
 #sliderfill2 {
-    /*border:1px solid rgb(41,253,46);*/
     background: rgb(41,253,46);
 }
 
 #sliderfill3 {
-    /*border:1px solid rgb(11,36,251);*/
     background: rgb(11,36,251);
 }
 
@@ -79,7 +75,6 @@ to provide a positioning context for the range input and other elements.*/
 	position:absolute;
     left:0px;
     top:0px;
-    /*border:1px solid silver;*/
     border-radius: 50px;
 	padding:0px;
     margin:0px;

@@ -17,7 +17,7 @@ var Display = require('./display').pythonServerDisplay;
 var EventEmitter = require('events');
 
 // var display = new Display();     //for arduino
-var display = new Display("172.24.1.1:8000", 80);
+var display = new Display("http://172.24.1.1:8000/", 80);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
