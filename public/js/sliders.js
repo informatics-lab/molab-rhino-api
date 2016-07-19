@@ -54,10 +54,6 @@ function colorOutputFromSlider() {
     green = green >> 4;
     blue = blue >> 4;
     var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
-    return colorString;
+    socket.emit('selectColor', colorString);
 }
 
-function sendColorToRhino(theme) {
-    var colorString = colorOutputFromSlider()
-    socket.emit('selectCustomTheme', {'theme': theme, 'colorString': colorString} );
-}

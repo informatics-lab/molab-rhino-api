@@ -141,4 +141,7 @@ th {
     width:250px;
     border:0 none !important;
     padding: 10px;
+    position: fixed;
+    top: 450px;
+    left: 250px;
 }

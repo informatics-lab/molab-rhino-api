@@ -1,44 +1,84 @@
 /*
 * --MAIN PAGE STYLES--
 */
-
-html, button, input, select, textarea,
-.pure-g [class *= "pure-u"] {
-    font-family: Georgia, Times, "Times New Roman", serif;
+.sliderBackg {
+    background-image: url("../img/assets/ipad-rhino-slider-backg.png");
+    background-size: 768px 1024px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.pure-g > div {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 1em;
-    width: 150px;
-    text-align: center;
+.tweetBackg {
+    background-image: url("../img/assets/ipad-rhino-tweet-backg.png");
+    background-size: 768px 1024px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.button-page {
+    border-radius: 20px;
     margin-left:auto; 
     margin-right:auto;
+    position: fixed;
+    top: 300px;
+    left: 250px;
+}
+
+.theme-hashtags {
+    position: fixed;
+    top: 800px;
+    left: 250px;
+    text-align: center;
+}
+
+/*
+* -- THEME BUTTONS --
+*/
+
+.theme-container {
+    position: relative;
+    width: 100%;
 }
 
 .button-theme {
-    color: black;
-    border-radius: 20px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 200px;
 }
 
-.button-twitter {
-    border-radius: 20px;
-    margin-left:auto; 
-    margin-right:auto;
+.button-theme img {
+    height: 50px;
+    width: 150px;
+}
+
+.rainbow-btn {
+    position: fixed;
+    top: 800px;
+    left: 100px;
+}
+
+.rhino-no-btn {
+    position: fixed;
+    top: 800px;
+    left: 250px;
+}
+
+.water-btn {
+    position: fixed;
+    top: 800px;
+    left: 400px;
 }
 
 /*
 *--TWITTER STYLES --
 */
-
 .tweet-container {
     margin:10px 10px 15px;
     text-align: center;
     margin-left:auto; 
     margin-right:auto;
+    position: fixed;
+    top: 450px;
+    left: 250px;
 }
 
 #tweetDisplay {
