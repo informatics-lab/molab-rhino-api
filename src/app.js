@@ -14,12 +14,15 @@ var ThemeServer = Themes.themeServer;
 var ThemeSelector = Themes.themeSelector;
 var Display = require('./display').pythonServerDisplay;
 // var Display = require('./display').arduinoDisplay;
+
 var EventEmitter = require('events');
+var Color = require('color');
 
 // var display = new Display();     //for arduino
 var display = new Display("http://172.24.1.1:8000/", 80);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
+
 
 
 // read in credentials from env variables
@@ -76,6 +79,14 @@ io.on('connection', function(socket){
 
     socket.on('selectOff', function() {
         themeSelector.selectOff();
+    });
+
+    socket.on('data', function(colorStringArray) {
+       var colors = [];
+        colorStringArray.forEach(function(colorString) {
+            colors.push(Color(colorString));
+        });
+        display.setPixelsToColorArray(colors);
     });
 
     socket.on('disconnect', function(){
