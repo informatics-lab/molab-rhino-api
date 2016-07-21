@@ -42,7 +42,7 @@ var myEventEmitter = new EventEmitter();
 // ---COMMENT OUT SECTION IF NO INTERNET CONNECTION ---
 
 var client = new Twitter(credentials);
-var stream = client.stream('statuses/filter', {track: KEYWORD, language: "en"});
+var stream = client.stream('statuses/filter', {track: KEYWORD});
 
 stream.on('data', function (tweet) {
         log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
