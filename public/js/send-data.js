@@ -16,6 +16,8 @@ window.onload = function () {
         div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
         
     });
+
+    socket.emit('historicTweets');
     
 };
 
@@ -30,7 +32,7 @@ function selectTheme(theme) {
 function tweetToHtml(tweet) {
     var html = '<div class="tweet">';
     html = html + '<img src="'+tweet.user.profile_image_url+'" />';
-    html = html + '<span><span class="userName">' + tweet.user.name + '</span>' + '<span class="screenName">' + '@' + tweet.user.screen_name + '</span>' + '<span class="timeStamp">' + tweet.created_at.substring(0,10) + '</span></span>';
+    html = html + '<span><span class="userName">' + tweet.user.name + '</span>' + '<span class="screenName">' + '@' + tweet.user.screen_name + '</span>' + '<span class="timeStamp">' + tweet.created_at.substring(0,16) + '</span></span>';
     html = html + '<p>' + tweet.text + '</p>';
     html = html + '</div>';
     return html;
