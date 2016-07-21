@@ -19,7 +19,7 @@ var EventEmitter = require('events');
 var Color = require('color');
 
 // var display = new Display();     //for arduino
-var display = new Display("http://172.24.1.1:8000/", 80);
+var display = new Display("http://localhost:8000/", 1002);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
@@ -58,8 +58,7 @@ stream.on('data', function (tweet) {
 });
 
 stream.on('error', function (error) {
-    log.error("error", error);
-    throw error;
+    log.error("Twitter stream error:\n{}", [JSON.stringify(error)]);
 });
 
 io.on('connection', function(socket){
@@ -87,6 +86,11 @@ io.on('connection', function(socket){
             colors.push(Color(colorString));
         });
         display.setPixelsToColorArray(colors);
+    });
+
+    socket.on('error', function(error) {
+        // we just dont want it to bomb out so do nothing.
+        log.error("Websocket error :\n{}",[JSON.stringify(error)]);
     });
 
     socket.on('disconnect', function(){
