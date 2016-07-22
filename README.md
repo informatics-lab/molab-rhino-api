@@ -1,5 +1,2 @@
-# molab-rhino-api
-The rhino project api (nodejs)
-
-## Installation
-`$ npm install`
+# molab-rhino-api  
+## The Met Office Informatics Lab Rhino Project 
