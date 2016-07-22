@@ -19,7 +19,7 @@ var EventEmitter = require('events');
 var Color = require('color');
 
 // var display = new Display();     //for arduino
-var display = new Display("http://localhost:8000/", 1002);
+var display = new Display("http://172.24.1.1:8000/", 1002);
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
@@ -41,25 +41,25 @@ var myEventEmitter = new EventEmitter();
 
 // ---COMMENT OUT SECTION IF NO INTERNET CONNECTION ---
 
-var client = new Twitter(credentials);
-var stream = client.stream('statuses/filter', {track: KEYWORD});
-
-stream.on('data', function (tweet) {
-        log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
-        tweet.text = swearjar.censor(tweet.text);
-        myEventEmitter.emit('tweet', tweet);
-        tweet.entities.hashtags.forEach(function (hashtag) {
-            var tag = hashtag.text.toLowerCase();
-            if (tag != KEYWORD) {
-                log.trace("Stripped hashtag : {}", [hashtag.text]);
-                themeSelector.guessTheme(tag);
-            }
-        });
-});
-
-stream.on('error', function (error) {
-    log.error("Twitter stream error:\n{}", [JSON.stringify(error)]);
-});
+// var client = new Twitter(credentials);
+// var stream = client.stream('statuses/filter', {track: KEYWORD});
+//
+// stream.on('data', function (tweet) {
+//         log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
+//         tweet.text = swearjar.censor(tweet.text);
+//         myEventEmitter.emit('tweet', tweet);
+//         tweet.entities.hashtags.forEach(function (hashtag) {
+//             var tag = hashtag.text.toLowerCase();
+//             if (tag != KEYWORD) {
+//                 log.trace("Stripped hashtag : {}", [hashtag.text]);
+//                 themeSelector.guessTheme(tag);
+//             }
+//         });
+// });
+//
+// stream.on('error', function (error) {
+//     log.error("Twitter stream error:\n{}", [JSON.stringify(error)]);
+// });
 
 io.on('connection', function(socket){
     log.debug('Web ui connected');
@@ -80,17 +80,13 @@ io.on('connection', function(socket){
         themeSelector.selectOff();
     });
 
-    socket.on('data', function(colorStringArray) {
-       var colors = [];
-        colorStringArray.forEach(function(colorString) {
-            colors.push(Color(colorString));
-        });
-        display.setPixelsToColorArray(colors);
+    socket.on('selectColorStringArray', function(colorStringArray) {
+        themeSelector.selectColorStringArray(colorStringArray);
     });
 
     socket.on('error', function(error) {
         // we just dont want it to bomb out so do nothing.
-        log.error("Websocket error :\n{}",[JSON.stringify(error)]);
+        log.error("Websocket error :\n{}",[error]);
     });
 
     socket.on('disconnect', function(){
