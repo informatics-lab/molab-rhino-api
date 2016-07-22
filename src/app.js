@@ -43,6 +43,15 @@ var myEventEmitter = new EventEmitter();
 
 var client = new Twitter(credentials);
 var stream = client.stream('statuses/filter', {track: KEYWORD});
+var history = function() {
+    client.get('search/tweets', {q: KEYWORD, since_id:756113900718985200}, function(error, tweets, response) { 
+        var ordered = tweets.statuses.reverse();
+        ordered.forEach(function(historicTweet){
+            log.trace("{}",[historicTweet.id]);
+            myEventEmitter.emit('tweet', historicTweet);
+        });
+    })
+}
 
 stream.on('data', function (tweet) {
         log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
@@ -80,6 +89,11 @@ io.on('connection', function(socket){
         themeSelector.selectOff();
     });
 
+    socket.on('historicTweets', function() {
+        log.debug("fetching historic tweets");
+        history();
+    });
+    
     socket.on('data', function(colorStringArray) {
        var colors = [];
         colorStringArray.forEach(function(colorString) {
@@ -90,7 +104,7 @@ io.on('connection', function(socket){
 
     socket.on('error', function(error) {
         // we just dont want it to bomb out so do nothing.
-        log.error("Websocket error :\n{}",[JSON.stringify(error)]);
+        log.error("Websocket error :\n{}",[error]);
     });
 
     socket.on('disconnect', function(){
