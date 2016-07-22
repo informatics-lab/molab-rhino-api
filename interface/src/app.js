@@ -90,16 +90,11 @@ io.on('connection', function(socket){
     });
 
     socket.on('historicTweets', function() {
-        log.debug("fetching historic tweets");
         history();
     });
-    
-    socket.on('data', function(colorStringArray) {
-       var colors = [];
-        colorStringArray.forEach(function(colorString) {
-            colors.push(Color(colorString));
-        });
-        display.setPixelsToColorArray(colors);
+
+    socket.on('selectColorStringArray', function(colorStringArray) {
+        themeSelector.selectColorStringArray(colorStringArray);
     });
 
     socket.on('error', function(error) {

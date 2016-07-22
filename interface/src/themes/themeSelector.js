@@ -78,6 +78,15 @@ module.exports = function(display, themeServer) {
             setInterupt ();
             display.setAllPixelsToColor(Color(color));
         },
+        
+        selectColorStringArray : function(colorStringArray) {
+            setInterupt();
+            var colors = [];
+            colorStringArray.forEach(function(colorString) {
+                colors.push(Color(colorString));
+            });
+            display.setPixelsToColorArray(colors);
+        },
 
         selectOff : function() {
             setInterupt();
