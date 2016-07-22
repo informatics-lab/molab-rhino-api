@@ -42,11 +42,14 @@ app.post('/deploy', function (req, res) {
 });
 
 function deploy() {
+    // change to home directory
+	execSync('cd ~/github/molab-rhino-api/', execCallback);
+    
     // kill existing flask server
-    execSync('ps aux | grep flask | grep -v grep | awk \'{print $2}\' | xargs kill -9', execCallback);
+    execSync('ps aux | grep flask | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
     
     // kill node server
-    execSync('ps aux | grep bin/www | grep -v grep | awk \'{print $2}\' | xargs kill -9', execCallback);
+    execSync('ps aux | grep bin/www | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
 
 	// reset any changes that have been made locally
 	console.log('resetting...');
@@ -58,7 +61,7 @@ function deploy() {
 
 	// now pull down the latest
 	console.log('pulling...');
-	execSync(`git -C ${projectRoot} pull -f`, execCallback);
+	execSync(`git -C ${projectRoot} pull -f origin master`, execCallback);
 
 	// and npm install interface with --production
 	console.log('npm installing...');
@@ -69,7 +72,7 @@ function deploy() {
 	execSync(`npm -C ~/github/molab-rhino-api/deploy install --production`, execCallback);
 
     // and run npm start
-	execSync('cd ~/github/molab-rhino-api/interface && npm start', execCallback);
+	execSync('cd ~/github/molab-rhino-api/interface && sudo npm start', execCallback);
     
 }
 
