@@ -1,17 +1,20 @@
 {
-  "name": "webhookweb",
+  "name": "pi-deployment",
   "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start":"forever start deploynew.js"
+  },
   "dependencies": {
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
     "express": "^4.13.4",
+    "forever": "^0.15.2",
+    "forever-monitor": "^1.7.0",
     "q": "^1.4.1",
     "localtunnel":"^1.8.1"
   },
   "devDependencies": {
     "typescript":"^1.8.10"
-  },
-  "scripts": {
-    "start":"node deploynew.js"
   }
 }
