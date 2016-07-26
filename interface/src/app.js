@@ -8,6 +8,9 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var swearjar = require('swearjar');
 
+var fs = require('fs');
+var ytdl = require('ytdl-core');
+
 var Twitter = require('twitter');
 var Themes = require('./themes');
 var ThemeServer = Themes.themeServer;
@@ -19,7 +22,7 @@ var EventEmitter = require('events');
 var Color = require('color');
 
 // var display = new Display();     //for arduino
-var display = new Display("http://localhost:8000/", 1002);
+var display = new Display("http://localhost:8000/", 1002); //for Pi
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 
@@ -39,12 +42,19 @@ const KEYWORD = "technorhino";
 
 var myEventEmitter = new EventEmitter();
 
+// Streams a youtube video
+function youTube (videoURL) {
+    log.trace("URL recieved {}", [videoURL]);
+    ytdl(videoURL)
+      .pipe(fs.createWriteStream('public/data/video.mp4'));
+}
+
 // ---COMMENT OUT SECTION IF NO INTERNET CONNECTION ---
 
 var client = new Twitter(credentials);
 var stream = client.stream('statuses/filter', {track: KEYWORD});
 var history = function() {
-    client.get('search/tweets', {q: KEYWORD, since_id:756113900718985200}, function(error, tweets, response) { 
+    client.get('search/tweets', {q: KEYWORD, since_id:756113900718985200}, function(error, tweets, response) {
         var ordered = tweets.statuses.reverse();
         ordered.forEach(function(historicTweet){
             log.trace("{}",[historicTweet.id]);
@@ -63,6 +73,11 @@ stream.on('data', function (tweet) {
                 log.trace("Stripped hashtag : {}", [hashtag.text]);
                 themeSelector.guessTheme(tag);
             }
+        });
+        tweet.entities.urls.forEach(function (url) {
+            var tweetURL = url.expanded_url;
+            log.trace("video url {}", [tweetURL])
+            youTube(tweetURL);
         });
 });
 

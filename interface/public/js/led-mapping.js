@@ -15,8 +15,8 @@ window.onload = function () {
     socket = io();
     console.log();
     // getMaxMin(ledMapping);
-    sampleImageCanvas(LED_MAPPING);
-    // sampleVideoCanvas(LED_MAPPING);
+    //sampleImageCanvas(LED_MAPPING);
+    sampleVideoCanvas(LED_MAPPING);
 };
 
 function plotOnCanvas(xyrgbArray) {
@@ -82,7 +82,7 @@ var sampleImageCanvas = function (mappingArray) {
     var image = new Image();
     // image.src = source.src;
 
-    image.src = "/data/invader.jpg";
+    image.src = "/data/union-jack.png";
     image.crossOrigin = "Anonymous";
     image.onload = function () {
         sourceContext.drawImage(image, 0, 0, WIDTH, HEIGHT);
@@ -104,7 +104,7 @@ var sampleVideoCanvas = function (mappingArray) {
 
     var video = document.createElement('video');
 
-    video.src = "/data/rainbow.mp4";
+    video.src = "/data/video.mp4";
     video.crossOrigin = "Anonymous";
     video.controls = "controls";
     video.autoplay = false;
