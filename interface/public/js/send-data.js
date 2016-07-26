@@ -16,9 +16,7 @@ window.onload = function () {
         div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
 
     });
-
     socket.emit('historicTweets');
-
 };
 
 /**

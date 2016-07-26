@@ -44,13 +44,15 @@ const KEYWORD = "technorhino";
 var myEventEmitter = new EventEmitter();
 
 // Streams a youtube video
-function youTube (videoURL) {
+function youTube (videoURL, callback) {
     log.trace("video url to download {}", [videoURL]);
     ytdl(videoURL)
-      .pipe(fs.createWriteStream('public/data/video.mp4'));
+      .pipe(fs.createWriteStream('public/data/video.mp4'))
+        .on('close', callback);
 }
 
 function imgDownload (imageURL, callback) {
+    log.trace("image url to download {}", [imageURL]);
     request(imageURL)
       .pipe(fs.createWriteStream('public/data/image.png'))
         .on('close', callback);
@@ -82,19 +84,24 @@ stream.on('data', function (tweet) {
             }
         });
         tweet.entities.urls.forEach(function (url) {
-            var tweetURL = url.expanded_url;
-            log.trace("video url {}", [tweetURL]);
-            youTube(tweetURL);
-            vidSource = 'video.mp4';
-            myEventEmitter.emit('vidSource', vidSource);
+            if(tweet.entities.urls != undefined) {
+                var tweetURL = url.expanded_url;
+                log.trace("video url {}", [tweetURL]);
+                youTube(tweetURL, function() {
+                    vidSource = 'video.mp4';
+                    myEventEmitter.emit('vidSource', vidSource);
+                });
+            };
         });
         tweet.entities.media.forEach(function (media) {
-            var imageURL = media.media_url;
-            log.trace("image url {}", [imageURL]);
-            imgDownload(imageURL, function(){
-              imgSource = 'image.png';
-              myEventEmitter.emit('imgSource', imgSource);
-            });
+            if(tweet.entities.media != undefined) { 
+                var imageURL = media.media_url;
+                log.trace("image url {}", [imageURL]);
+                imgDownload(imageURL, function() {
+                  imgSource = 'image.png';
+                  myEventEmitter.emit('imgSource', imgSource);
+                });
+            };
         });
 });
 
