@@ -16,7 +16,15 @@ window.onload = function () {
     console.log();
     // getMaxMin(ledMapping);
     //sampleImageCanvas(LED_MAPPING);
-    sampleVideoCanvas(LED_MAPPING);
+    //sampleVideoCanvas(LED_MAPPING);
+    socket.on('vidSource', function(vidSource) {
+        console.trace(vidSource);
+        sampleVideoCanvas(vidSource);
+    });
+    socket.on('imgSource', function(imgSource) {
+        console.trace(imgSource);
+        sampleImageCanvas(imgSource);
+    });
 };
 
 function plotOnCanvas(xyrgbArray) {
@@ -73,7 +81,8 @@ function getMaxMin(arrayOfArrays) {
     });
 }
 
-var sampleImageCanvas = function (mappingArray) {
+var sampleImageCanvas = function (mediaSource) {
+    mappingArray = LED_MAPPING;
     var sourceCanvas = document.getElementById('sourceCanvas');
     sourceCanvas.width = WIDTH;
     sourceCanvas.height = HEIGHT;
@@ -82,7 +91,8 @@ var sampleImageCanvas = function (mappingArray) {
     var image = new Image();
     // image.src = source.src;
 
-    image.src = "/data/union-jack.png";
+    image.src = "/data/" + mediaSource; //"/data/image.png"
+    console.trace(image.src);
     image.crossOrigin = "Anonymous";
     image.onload = function () {
         sourceContext.drawImage(image, 0, 0, WIDTH, HEIGHT);
@@ -93,8 +103,8 @@ var sampleImageCanvas = function (mappingArray) {
 };
 
 
-var sampleVideoCanvas = function (mappingArray) {
-
+var sampleVideoCanvas = function (mediaSource) {
+    mappingArray = LED_MAPPING;
     var sourceCanvas = document.getElementById('sourceCanvas');
     sourceCanvas.width = WIDTH;
     sourceCanvas.height = HEIGHT;
@@ -103,8 +113,8 @@ var sampleVideoCanvas = function (mappingArray) {
     var loop;
 
     var video = document.createElement('video');
-
-    video.src = "/data/video.mp4";
+    video.src = "/data/" + mediaSource;
+    console.trace(video.src);
     video.crossOrigin = "Anonymous";
     video.controls = "controls";
     video.autoplay = false;
@@ -122,7 +132,6 @@ var sampleVideoCanvas = function (mappingArray) {
         video.stop();
         clearInterval(loop);
     });
-
 
     var sampleLoop = function() {
         return setInterval (function() {

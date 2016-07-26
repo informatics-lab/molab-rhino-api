@@ -10,6 +10,7 @@ var swearjar = require('swearjar');
 
 var fs = require('fs');
 var ytdl = require('ytdl-core');
+var request = require('request');
 
 var Twitter = require('twitter');
 var Themes = require('./themes');
@@ -44,9 +45,15 @@ var myEventEmitter = new EventEmitter();
 
 // Streams a youtube video
 function youTube (videoURL) {
-    log.trace("URL recieved {}", [videoURL]);
+    log.trace("video url to download {}", [videoURL]);
     ytdl(videoURL)
       .pipe(fs.createWriteStream('public/data/video.mp4'));
+}
+
+function imgDownload (imageURL, callback) {
+    request(imageURL)
+      .pipe(fs.createWriteStream('public/data/image.png'))
+        .on('close', callback);
 }
 
 // ---COMMENT OUT SECTION IF NO INTERNET CONNECTION ---
@@ -76,13 +83,23 @@ stream.on('data', function (tweet) {
         });
         tweet.entities.urls.forEach(function (url) {
             var tweetURL = url.expanded_url;
-            log.trace("video url {}", [tweetURL])
+            log.trace("video url {}", [tweetURL]);
             youTube(tweetURL);
+            vidSource = 'video.mp4';
+            myEventEmitter.emit('vidSource', vidSource);
+        });
+        tweet.entities.media.forEach(function (media) {
+            var imageURL = media.media_url;
+            log.trace("image url {}", [imageURL]);
+            imgDownload(imageURL, function(){
+              imgSource = 'image.png';
+              myEventEmitter.emit('imgSource', imgSource);
+            });
         });
 });
 
 stream.on('error', function (error) {
-    log.error("Twitter stream error:\n{}", [JSON.stringify(error)]);
+    log.error("Twitter stream error:\n{}", [error]);
 });
 
 io.on('connection', function(socket){
@@ -90,6 +107,14 @@ io.on('connection', function(socket){
 
     myEventEmitter.on('tweet', function(tweet){
         socket.emit('tweet', tweet);
+    });
+
+    myEventEmitter.on('vidSource', function(vidSource) {
+        socket.emit('vidSource', vidSource);
+    });
+
+    myEventEmitter.on('imgSource', function(imgSource) {
+        socket.emit('imgSource', imgSource);
     });
 
     socket.on('selectTheme', function(theme) {

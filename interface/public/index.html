@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Met Office :: Informatics Lab :: Themes </title>
-    
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sliderStyle.css">
 </head>
-    
+
 <body class="sliderBackg">
-    
-<!-- SCRIPTS -->    
 
-<script type="text/javascript" src="js/sliders.js"></script> 
-<script type="text/javascript" src="js/send-data.js"></script>    
-<script type="text/javascript" src="js/lib/socket.io-client/socket.io.js"></script>   
+<!-- SCRIPTS -->
 
-<!-- CHANGE PAGE BUTTON -->     
-    
+<script type="text/javascript" src="js/sliders.js"></script>
+<script type="text/javascript" src="js/send-data.js"></script>
+<script type="text/javascript" src="js/led-mapping.js"></script>
+<script type="text/javascript" src="js/lib/socket.io-client/socket.io.js"></script>
+
+<!-- CHANGE PAGE BUTTON -->
+
 <a class="button-to-tweets" onclick="location.href='./tweets.html'";>
     <img src="img/assets/ipad-rhino-3-assets-10.png">
-</a>    
-  
+</a>
+
 <!-- SLIDERS -->
-    
+
 <table class="slider2column">
 <tr><td>
 <div class="slidershell" id="slidershell1">
@@ -35,7 +36,7 @@
 	<div class="slidervalue" id="slidervalue1"></div>
 	<input class="slider" id="slider1" type="range" min="0" max="255" step="1" oninput="showValue(value,1,false);colorOutputFromSlider()" />
 </div>
-<p>&nbsp;</p>    
+<p>&nbsp;</p>
 <div class="slidershell" id="slidershell2">
 	<div class="sliderfill" id="sliderfill2"></div>
 	<div class="slidertrack grad" id="slidertrack2"></div>
@@ -43,19 +44,19 @@
 	<div class="slidervalue" id="slidervalue2"></div>
 	<input class="slider" id="slider2" type="range" min="0" max="255" step="1" oninput="showValue(value,2,false);colorOutputFromSlider()" />
 </div>
-<p>&nbsp;</p>    
+<p>&nbsp;</p>
 <div class="slidershell" id="slidershell3">
 	<div class="sliderfill" id="sliderfill3"></div>
 	<div class="slidertrack grad" id="slidertrack3"></div>
 	<div class="sliderthumb" id="sliderthumb3"></div>
 	<div class="slidervalue" id="slidervalue3"></div>
 	<input class="slider" id="slider3" type="range" min="0" max="255" step="1" oninput="showValue(value,3,false);colorOutputFromSlider()" />
-</div>    
+</div>
 </td></tr>
-</table>   
-    
-<!-- THEMES -->    
-    
+</table>
+
+<!-- THEMES -->
+
 <div class="theme-container">
     <a class="button-theme" href="#" onclick="selectTheme('rainbow')">
         <img class="rainbow-btn" src="img/assets/rainbow-btn.png" onmouseover="this.src='img/assets/rainbow-btn-pressed.png'" onmouseout="this.src='img/assets/rainbow-btn.png'"/>
