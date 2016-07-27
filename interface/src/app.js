@@ -44,11 +44,10 @@ const KEYWORD = "technorhino";
 var myEventEmitter = new EventEmitter();
 
 // Streams a youtube video
-function youTube (videoURL, callback) {
+function youTube (videoURL) {
     log.trace("video url to download {}", [videoURL]);
     ytdl(videoURL)
-      .pipe(fs.createWriteStream('public/data/video.mp4'))
-        .on('close', callback);
+      .pipe(fs.createWriteStream('public/data/video.mp4'));
 }
 
 function imgDownload (imageURL, callback) {
@@ -86,15 +85,14 @@ stream.on('data', function (tweet) {
         tweet.entities.urls.forEach(function (url) {
             if(tweet.entities.urls != undefined) {
                 var tweetURL = url.expanded_url;
-                log.trace("video url {}", [tweetURL]);
-                youTube(tweetURL, function() {
-                    vidSource = 'video.mp4';
-                    myEventEmitter.emit('vidSource', vidSource);
-                });
+                log.trace("video url extracted from tweet {}", [tweetURL]);
+                youTube(tweetURL);
+                vidSource = 'video.mp4';
+                myEventEmitter.emit('vidSource', vidSource);
             };
         });
         tweet.entities.media.forEach(function (media) {
-            if(tweet.entities.media != undefined) { 
+            if(tweet.entities.media != undefined) {
                 var imageURL = media.media_url;
                 log.trace("image url {}", [imageURL]);
                 imgDownload(imageURL, function() {

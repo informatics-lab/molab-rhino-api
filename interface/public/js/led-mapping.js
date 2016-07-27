@@ -10,10 +10,10 @@ const HEIGHT = (Y_MAX + 1 ) - Y_MIN;
 
 var socket = null;
 
-window.onload = function () {
-    console.log("working");
-    socket = io();
-    console.log();
+// window.onload = function () {
+//     console.log("working");
+     socket = io();
+//     console.log();
     // getMaxMin(ledMapping);
     //sampleImageCanvas(LED_MAPPING);
     //sampleVideoCanvas(LED_MAPPING);
@@ -25,7 +25,7 @@ window.onload = function () {
         console.trace(imgSource);
         sampleImageCanvas(imgSource);
     });
-};
+// };
 
 function plotOnCanvas(xyrgbArray) {
     var mappingCanvas = document.getElementById('mappingCanvas');
