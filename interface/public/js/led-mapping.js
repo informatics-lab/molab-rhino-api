@@ -10,22 +10,22 @@ const HEIGHT = (Y_MAX + 1 ) - Y_MIN;
 
 var socket = null;
 
-// window.onload = function () {
+ window.onload = function () {
 //     console.log("working");
      socket = io();
 //     console.log();
-    // getMaxMin(ledMapping);
-    //sampleImageCanvas(LED_MAPPING);
-    //sampleVideoCanvas(LED_MAPPING);
-    socket.on('vidSource', function(vidSource) {
-        console.trace(vidSource);
-        sampleVideoCanvas(vidSource);
-    });
-    socket.on('imgSource', function(imgSource) {
-        console.trace(imgSource);
-        sampleImageCanvas(imgSource);
-    });
-// };
+//    // getMaxMin(ledMapping);
+//    //sampleImageCanvas(LED_MAPPING);
+//    //sampleVideoCanvas(LED_MAPPING);
+      socket.on('vidSource', function(vidSource) {
+          console.trace(vidSource);
+          sampleVideoCanvas(vidSource);
+      });
+      socket.on('imgSource', function(imgSource) {
+          console.trace(imgSource);
+          sampleImageCanvas(imgSource);
+      });
+};
 
 function plotOnCanvas(xyrgbArray) {
     var mappingCanvas = document.getElementById('mappingCanvas');
