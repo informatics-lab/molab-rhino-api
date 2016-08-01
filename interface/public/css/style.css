@@ -57,6 +57,14 @@ body {
 }
 
 /*
+* -- LED MAPPING STYLE
+*/
+
+.led-mapping {
+    display: none;
+}
+
+/*
 * -- THEME STYLES --
 */
 
