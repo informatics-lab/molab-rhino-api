@@ -14,9 +14,9 @@ var socket = null;
 //     console.log("working");
      socket = io();
 //     console.log();
-//    // getMaxMin(ledMapping);
-//    //sampleImageCanvas(LED_MAPPING);
-//    //sampleVideoCanvas(LED_MAPPING);
+//     getMaxMin(ledMapping);
+//     sampleImageCanvas(LED_MAPPING);
+//     sampleVideoCanvas(LED_MAPPING);
       socket.on('vidSource', function(vidSource) {
           console.trace(vidSource);
           sampleVideoCanvas(vidSource);
@@ -129,7 +129,7 @@ var sampleVideoCanvas = function (mediaSource) {
         clearInterval(loop);
     });
     video.addEventListener('ended', function() {
-        video.stop();
+        video.pause();
         clearInterval(loop);
     });
 
