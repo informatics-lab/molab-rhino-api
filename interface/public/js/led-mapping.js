@@ -15,8 +15,8 @@ var socket = null;
      socket = io();
 //     console.log();
 //     getMaxMin(ledMapping);
-//     sampleImageCanvas(LED_MAPPING);
-//     sampleVideoCanvas(LED_MAPPING);
+//     sampleImageCanvas('union-jack.png');
+      sampleVideoCanvas('Tetris Ultimate Vita Gameplay.mp4');
       socket.on('vidSource', function(vidSource) {
           console.trace(vidSource);
           sampleVideoCanvas(vidSource);

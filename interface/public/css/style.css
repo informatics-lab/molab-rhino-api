@@ -57,13 +57,21 @@ body {
 }
 
 /*
+* -- LED MAPPING STYLE
+*/
+
+.led-mapping {
+    display: none;
+}
+
+/*
 * -- THEME STYLES --
 */
 
-.theme-container {   
+.theme-container {
     text-align: center;
     position: fixed;
-    width: 700px; 
+    width: 700px;
     top: 600px;
     left: 50%;
     margin-left: -450px;
@@ -80,19 +88,49 @@ body {
 
 .rainbow-btn {
     position: fixed;
-    top: 770px;
-    left: 80px;
+    top: 740px;
+    left: 70px;
 }
 
 .rhino-no-btn {
     position: fixed;
-    top: 820px;
+    top: 800px;
+    left: 140px;
 }
 
-.water-btn {
+.blank-btn-cent {
     position: fixed;
-    top: 770px;
-    right: 80px;
+    top: 860px;
+}
+
+.blank-btn {
+    position: fixed;
+    top: 800px;
+    right: 140px;
+}
+
+.star-btn {
+    position: fixed;
+    top: 740px;
+    right: 70px;
+}
+
+.button-text {
+    position: fixed;
+    color:black;
+    text-decoration: none;
+    font-family: courier;
+    font-weight: lighter;
+    font-size: 1.5em;
+    letter-spacing: -2px;
+    background-color: transparent;
+    pointer-events: none;
+    cursor: default;
+}
+
+.star-text {
+    top: 725px;
+    right: 140px;
 }
 
 /*
@@ -107,11 +145,11 @@ body {
     margin-left: -250px;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
-    
+
 }
 
 #tweetDisplay {
-    overflow-y: scroll; 
+    overflow-y: scroll;
     height:300px;
 }
 
