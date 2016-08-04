@@ -42,38 +42,42 @@ app.post('/deploy', function (req, res) {
 });
 
 function deploy() {
-    // change to home directory
+  // change to home directory
+  console.log('move to home directory...');
 	execSync('cd ~/github/molab-rhino-api/', execCallback);
-    
-    // kill existing flask server
-    execSync('ps aux | grep flask | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
-    
-    // kill node server
-    execSync('ps aux | grep bin/www | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
+
+  // kill existing flask server
+  console.log('kill flask server...');
+  execSync('ps aux | grep flask | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
+
+  // kill node server
+  console.log('kill node server...');
+  execSync('ps aux | grep bin/www | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
 
 	// reset any changes that have been made locally
-	console.log('resetting...');
+	console.log('resetting git...');
 	execSync(`git -C ${projectRoot} reset --hard`, execCallback);
 
 	// and ditch any files that have been added locally too
-	console.log('cleaning...');
+	console.log('cleaning git...');
 	execSync(`git -C ${projectRoot} clean -df`, execCallback);
 
 	// now pull down the latest
-	console.log('pulling...');
+	console.log('pulling git...');
 	execSync(`git -C ${projectRoot} pull -f origin master`, execCallback);
 
 	// and npm install interface with --production
 	console.log('npm installing...');
 	execSync(`npm -C ~/github/molab-rhino-api/interface install --production`, execCallback);
-    
-    // and npm install deploy with --production
+
+  // and npm install deploy with --production
 	console.log('npm installing...');
 	execSync(`npm -C ~/github/molab-rhino-api/deploy install --production`, execCallback);
 
-    // and run npm start
-	execSync('cd ~/github/molab-rhino-api/interface && sudo npm start', execCallback);
-    
+  // and run npm start
+  console.log('restarting servers...');
+	execSync('cd ~/github/molab-rhino-api/interface && npm start', execCallback);
+
 }
 
 function execCallback(err, stdout, stderr) {
