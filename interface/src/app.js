@@ -23,7 +23,7 @@ var EventEmitter = require('events');
 var Color = require('color');
 
 // var display = new Display();     //for arduino
-var display = new Display("http://localhost:8000/", 1002); //for Pi
+var display = new Display("http://192.168.1.2:8000/", 1002); //for Pi
 var themeServer = new ThemeServer(display);
 var themeSelector = new ThemeSelector(display, themeServer);
 

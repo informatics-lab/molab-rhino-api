@@ -46,6 +46,10 @@ function deploy() {
   console.log('move to home directory...');
 	execSync('cd ~/github/molab-rhino-api/', execCallback);
 
+  // kill the npm start
+  console.log('kill npm start...');
+	execSync('ps aux | grep \'sh -c node\' | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
+
   // kill existing flask server
   console.log('kill flask server...');
   execSync('ps aux | grep flask | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
@@ -74,9 +78,13 @@ function deploy() {
 	console.log('npm installing...');
 	execSync(`npm -C ~/github/molab-rhino-api/deploy install --production`, execCallback);
 
+  // change to interface directory
+  console.log('move to interface directory...');
+	execSync('cd ~/github/molab-rhino-api/interface', execCallback);
+
   // and run npm start
   console.log('restarting servers...');
-	execSync('cd ~/github/molab-rhino-api/interface && npm start', execCallback);
+  execSync('npm start', execCallback);
 
 }
 
