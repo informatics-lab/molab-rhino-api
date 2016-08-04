@@ -7,18 +7,16 @@ window.onload = function () {
     console.log('onload');
     socket = io();
     var tweetNum = 0;
-    
+
     socket.on('tweet', function(tweet){
         tweetNum ++;
 //        console.log('total tweet number', tweetNum);
 //        console.log('tweet received', tweet);
         var div = document.getElementById('tweetDisplay');
         div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
-        
-    });
 
+    });
     socket.emit('historicTweets');
-    
 };
 
 /**
