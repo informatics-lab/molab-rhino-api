@@ -5,9 +5,9 @@ var custom = require('./custom');
 
 
 module.exports = function(display) {
-    
+
     return {
-        
+
         rainbow : function () {
             log.info("Setting all pixels to rainbow");
             return custom.rainbow(display);
@@ -17,5 +17,5 @@ module.exports = function(display) {
             return custom.stars(display);
         }
     }
-    
+
 };
