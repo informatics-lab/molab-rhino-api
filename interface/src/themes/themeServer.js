@@ -12,9 +12,9 @@ module.exports = function(display) {
             log.info("Setting all pixels to rainbow");
             return custom.rainbow(display);
         },
-        stars : function () {
+        starry : function () {
             log.info("Setting pixels to stars");
-            return custom.stars(display);
+            return custom.starry(display);
         }
     }
 

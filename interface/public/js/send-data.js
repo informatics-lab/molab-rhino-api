@@ -16,6 +16,22 @@ window.onload = function () {
         div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
 
     });
+    socket.on('selectTheme', function(theme) {
+        if (theme.type === 'video') {
+            console.debug("video playing {}", [theme.fileName]);
+            sampleVideoCanvas(theme.fileName);
+        }
+        if (theme.type === 'image') {
+            sampleImageCanvas(theme.fileName);
+        }
+    });
+    socket.on('interupt', function(interupt) {
+        console.debug("video interupt");
+        var video = document.getElementById('video');
+        video.addEventListener('playing', function() {
+            video.pause();
+        });
+    });
     socket.emit('historicTweets');
 };
 
