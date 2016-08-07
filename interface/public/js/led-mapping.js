@@ -79,13 +79,12 @@ var sampleImageCanvas = function (mediaSource) {
     // image.src = source.src;
 
     image.src = "/data/" + mediaSource; //"/data/image.png"
-    console.trace(image.src);
+    console.debug(image.src);
     image.crossOrigin = "Anonymous";
     image.onload = function () {
         sourceContext.drawImage(image, 0, 0, WIDTH, HEIGHT);
         var xyrgbArray = getXyrgbArrayFromContext(sourceContext, mappingArray);
         plotOnCanvas(xyrgbArray);
-        console.log(JSON.stringify(xygbArrayToHexColorStringArray(xyrgbArray)));
         emitColorStringArray(xygbArrayToHexColorStringArray(xyrgbArray));
     };
 };
@@ -101,7 +100,7 @@ var sampleVideoCanvas = function (mediaSource) {
     var loop;
 
     var video = document.createElement('video');
-    video.src = "/data/test/ANIMATIONS_GRAPHICS_TO_TEST/" + mediaSource;
+    video.src = "/data/" + mediaSource;
     console.trace(video.src);
     video.crossOrigin = "Anonymous";
     video.controls = "controls";

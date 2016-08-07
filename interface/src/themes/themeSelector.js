@@ -76,7 +76,7 @@ module.exports = function(display, themeServer, eventEmitter) {
                     else {
                         green();
                         log.debug("emitting theme object [{}]", [JSON.stringify(theme)]);
-                        eventEmitter.emit('selectTheme', theme);
+                        eventEmitter.emit('mediaTheme', theme);
                         return true;
                     }
                 }
@@ -84,13 +84,23 @@ module.exports = function(display, themeServer, eventEmitter) {
             return false;
         },
 
-        selectTheme : function(theme) {
+        selectTheme : function(selectedTheme) {
             setInterupt ();
-            blue().then(function(){
-                    eventEmitter.emit('selectTheme', theme);
-                }).then(function(){
-                    off();
-                });
+            currentThemes.forEach(function(theme) {
+                if (selectedTheme === theme.name) {
+                    if ('programmed' === theme.type) {
+                        blue().then(function(){
+                            return themeServer[selectedTheme]();
+                            }).then(function(){
+                                off();
+                            });
+                    }
+                    else {
+                        blue();
+                        eventEmitter.emit('mediaTheme', theme);
+                    }
+                }
+            });
         },
 
         selectColor : function(color) {

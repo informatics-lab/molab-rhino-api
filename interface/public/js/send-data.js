@@ -16,21 +16,22 @@ window.onload = function () {
         div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
 
     });
-    socket.on('selectTheme', function(theme) {
+    socket.on('mediaTheme', function(theme) {
         if (theme.type === 'video') {
             console.debug("video playing {}", [theme.fileName]);
             sampleVideoCanvas(theme.fileName);
         }
         if (theme.type === 'image') {
+            console.debug("image displaying {}", [theme.fileName]);
             sampleImageCanvas(theme.fileName);
         }
     });
     socket.on('interupt', function(interupt) {
-        console.debug("video interupt");
         var video = document.getElementById('video');
-        video.addEventListener('playing', function() {
+        if (video != null) {
+            console.debug("video interupt");
             video.pause();
-        });
+        }
     });
     socket.emit('historicTweets');
 };
