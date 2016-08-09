@@ -1,10 +1,11 @@
 [
   {"name":"javan", "fileName":"javan-nos-2.mp4", "type":"video"},
   {"name":"rainbow", "fileName":"Rainbow.mp4", "type":"video"},
-  {"name":"sunrise", "fileName":"sunrise.mp4", "type":"video"},
-  {"name":"rainy", "fileName":"rainy.mp4", "type":"video"},
+  {"name":"sun", "fileName":"sunrise.mp4", "type":"video"},
+  {"name":"rain", "fileName":"rainy.mp4", "type":"video"},
   {"name":"disco", "fileName":"disco.mp4", "type":"video"},
-  {"name":"others", "fileName":"other-rhinos.mp4", "type":"video"},
-  {"name":"olympics", "fileName":"union-jack.png", "type":"image"},
-  {"name":"starry", "fileName":"starry.js", "type":"programmed"}
+  {"name":"rhino", "fileName":"other-rhinos.mp4", "type":"video"},
+  {"name":"olympic", "fileName":"union-jack.png", "type":"image"},
+  {"name":"ring", "fileName":"rings.png", "type":"image"},
+  {"name":"star", "fileName":"starry.js", "type":"programmed"}
 ]

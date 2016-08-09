@@ -6,20 +6,46 @@ body {
 }
 
 .sliderBackg {
+    /*background-image: url("../img/assets/ipad-rhino-slider-backg.png");*/
+    background-size: 768px 1024px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.indexBackg {
     background-image: url("../img/assets/ipad-rhino-slider-backg.png");
     background-size: 768px 1024px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+    position: fixed;
+    width: 768px;
+    height: 1024px;
+    top: 0px;
+    left:50%;
+    margin-left: -384px;
+}​
 
 .tweetBackg {
-    background-image: url("../img/assets/ipad-rhino-tweet-backg.png");
+    /*background-image: url("../img/assets/ipad-rhino-tweet-backg.png");*/
     background-size: 768px 1024px;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
+.tweetbackg {
+    background-image: url("../img/assets/ipad-rhino-tweet-backg.png");
+    background-size: 768px 1024px;
+    position: fixed;
+    width: 768px;
+    height: 1024px;
+    top: 0px;
+    left:50%;
+    margin-left: -384px;
+}​
+
 .button-to-tweets {
+
+}
+
+.button-to-tweets a {
     position: fixed;
     text-align: center;
     width: 500px;

@@ -11,12 +11,15 @@
 </head>
 
 <body class="sliderBackg">
+<div class="indexBackg">
 
 <!-- CHANGE PAGE BUTTON -->
 
-<a class="button-to-tweets" onclick="location.href='./tweets.html'";>
-    <img src="img/assets/ipad-rhino-3-assets-10.png">
-</a>
+<div class="button-to-tweets">
+    <a class="button-to-tweets" onclick="location.href='./tweets.html'";>
+        <img src="img/assets/ipad-rhino-3-assets-10.png">
+    </a>
+</div>
 
 <!-- SLIDERS -->
 
@@ -55,15 +58,15 @@
       <img class="javan-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
       <p class="button-text javan-text">Javan</p>
   </a>
-  <a class="button-theme" href="#" onclick="selectTheme('sunrise')">
+  <a class="button-theme" href="#" onclick="selectTheme('sun')">
       <img class="sunrise-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
       <p class="button-text sunrise-text">Sunrise</p>
   </a>
-  <a class="button-theme" href="#" onclick="selectTheme('rainy')">
+  <a class="button-theme" href="#" onclick="selectTheme('rain')">
       <img class="rainy-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
-      <p class="button-text rainy-text">Rainy</p>
+      <p class="button-text rainy-text">Rain</p>
   </a>
-    <a class="button-theme" href="#" onclick="selectTheme('olympics')">
+    <a class="button-theme" href="#" onclick="selectTheme('olympic')">
         <img class="olympics-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
         <p class="button-text olympics-text">Olympics</p>
     </a>
@@ -90,5 +93,6 @@
 <script type="text/javascript" src="js/led-mapping.js"></script>
 <script type="text/javascript" src="js/lib/socket.io-client/socket.io.js"></script>
 
+</div>
 </body>
 </html>
