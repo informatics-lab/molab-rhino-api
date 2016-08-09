@@ -26,12 +26,8 @@ window.onload = function () {
             sampleImageCanvas(theme.fileName);
         }
     });
-    socket.on('interupt', function(interupt) {
-        var video = document.getElementById('video');
-        if (video != null) {
-            console.debug("video interupt");
-            video.pause();
-        }
+    socket.on('interupt', function() {
+        clearVideo();
     });
     socket.emit('historicTweets');
 };
@@ -41,6 +37,7 @@ window.onload = function () {
  */
 function selectTheme(theme) {
     console.log('button pressed');
+    clearVideo();
     socket.emit('selectTheme',theme);
 }
 
@@ -63,4 +60,10 @@ function colorSliderChanged() {
     var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
     socket.emit('selectColor', colorString);
     console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
+}
+
+function clearVideo() {
+  if (video) {
+    video.pause();
+  }
 }

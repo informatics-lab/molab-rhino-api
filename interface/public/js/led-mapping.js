@@ -10,6 +10,8 @@ const HEIGHT = (Y_MAX + 1 ) - Y_MIN;
 
 //     getMaxMin(ledMapping);
 
+var video;
+
 function plotOnCanvas(xyrgbArray) {
     var mappingCanvas = document.getElementById('mappingCanvas');
     mappingCanvas.width = WIDTH;
@@ -78,7 +80,7 @@ var sampleImageCanvas = function (mediaSource) {
     var image = new Image();
     // image.src = source.src;
 
-    image.src = "/data/" + mediaSource; //"/data/image.png"
+    image.src = "/data/" + mediaSource;
     console.debug(image.src);
     image.crossOrigin = "Anonymous";
     image.onload = function () {
@@ -92,6 +94,7 @@ var sampleImageCanvas = function (mediaSource) {
 
 var sampleVideoCanvas = function (mediaSource) {
     mappingArray = LED_MAPPING;
+    var source = document.getElementById('source');
     var sourceCanvas = document.getElementById('sourceCanvas');
     sourceCanvas.width = WIDTH;
     sourceCanvas.height = HEIGHT;
@@ -99,7 +102,8 @@ var sampleVideoCanvas = function (mediaSource) {
 
     var loop;
 
-    var video = document.createElement('video');
+    video = document.createElement('video');
+    video.setAttribute("id", "video");
     video.src = "/data/" + mediaSource;
     console.trace(video.src);
     video.crossOrigin = "Anonymous";
@@ -112,11 +116,12 @@ var sampleVideoCanvas = function (mediaSource) {
     video.addEventListener('playing', function() {
         loop = sampleLoop();
     });
-    video.addEventListener('paused', function() {
+    video.addEventListener('pause', function() {
         clearInterval(loop);
+        source.removeChild(video);
+        video = null;
     });
     video.addEventListener('ended', function() {
-        video.play();
         clearInterval(loop);
     });
 
@@ -129,7 +134,6 @@ var sampleVideoCanvas = function (mediaSource) {
         }, 1000/10);
     };
 
-    var source = document.getElementById('source');
     source.appendChild(video);
 };
 

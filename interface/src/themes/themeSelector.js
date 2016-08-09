@@ -50,7 +50,7 @@ module.exports = function(display, themeServer, eventEmitter) {
     };
 
     var setInterupt = function () {
-        eventEmitter.emit('interupt', 'interupt');
+        eventEmitter.emit('interupt');
         if(global.ledTheme) {
             clearInterval(global.ledTheme);
             global.ledTheme = null;
@@ -109,12 +109,17 @@ module.exports = function(display, themeServer, eventEmitter) {
         },
 
         selectColorStringArray : function(colorStringArray) {
-            setInterupt();
+            // setInterupt();
             var colors = [];
             colorStringArray.forEach(function(colorString) {
                 colors.push(Color(colorString));
             });
             display.setPixelsToColorArray(colors);
+        },
+
+        incorrect : function() {
+            setInterupt();
+            red();
         },
 
         selectOff : function() {

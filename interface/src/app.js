@@ -62,15 +62,13 @@ stream.on('data', function (tweet) {
             if (tag != KEYWORD) {
                 log.trace("Stripped hashtag : {}", [hashtag.text]);
                 if (themeSelector.guessTheme(tag) === true) {
-                        themeSelector.selectOff();
+                    themeSelector.selectOff();
                 }
                 else {
-                   themeSelector.red()
-                        .then(function(){
-                            themeSelector.selectOff();
-                   });
+                    themeSelector.incorrect();
                 }
             }
+            themeSelector.selectOff();
         });
 });
 
@@ -85,8 +83,8 @@ io.on('connection', function(socket){
         socket.emit('tweet', tweet);
     });
 
-    eventEmitter.on('interupt', function(interupt) {
-        socket.emit('interupt', interupt);
+    eventEmitter.on('interupt', function() {
+        socket.emit('interupt');
     });
 
     eventEmitter.on('mediaTheme', function(theme) {
