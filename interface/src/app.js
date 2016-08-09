@@ -60,15 +60,12 @@ stream.on('data', function (tweet) {
         tweet.entities.hashtags.forEach(function (hashtag) {
             var tag = hashtag.text.toLowerCase();
             if (tag != KEYWORD) {
-                log.trace("Stripped hashtag : {}", [hashtag.text]);
-                if (themeSelector.guessTheme(tag) === true) {
-                    themeSelector.selectOff();
-                }
-                else {
+                log.debug("Stripped hashtag : {}", [hashtag.text]);
+                var result = themeSelector.guessTheme(tag);
+                if (result == false) {
                     themeSelector.incorrect();
                 }
             }
-            themeSelector.selectOff();
         });
 });
 
