@@ -8,7 +8,7 @@ function showValue(val,slidernum,vertical) {
 	var fill = document.getElementById("sliderfill" + slidernum);
 	var rangevalue = document.getElementById("slidervalue" + slidernum);
 	var slider = document.getElementById("slider" + slidernum);
-	
+
 	var pc = val/(slider.max - slider.min); /* the percentage slider value */
 	var thumbsize = 40; /* must match the thumb size in your css */
 	var bigval = 250; /* widest or tallest value depending on orientation */
@@ -19,7 +19,7 @@ function showValue(val,slidernum,vertical) {
 	var bordersize = 0;
 	var loc = vertical ? (1 - pc) * tracksize : pc * tracksize;
 	rangevalue.innerHTML = val;
-	
+
 	thumb.style.top =  (vertical ? loc : 0) + "px";
 	thumb.style.left = (vertical ? 0 : loc) + "px";
 	fill.style.top = (vertical ? loc + (thumbsize/2) : filloffset + bordersize) + "px";
@@ -40,11 +40,17 @@ function setValue(val,num,vertical) {
 	showValue(val,num,vertical);
 }
 
-document.addEventListener('DOMContentLoaded', function(){   
+document.addEventListener('DOMContentLoaded', function(){
   setValue(128,1,false);
   setValue(128,2,false);
   setValue(128,3,false);
 })
+
+function themeButtonPressed() {
+	setValue(128,1,false);
+	setValue(128,2,false);
+	setValue(128,3,false);
+}
 
 function colorOutputFromSlider() {
     var red = document.getElementById('slider1').value;
@@ -57,4 +63,3 @@ function colorOutputFromSlider() {
     socket.emit('selectColor', colorString);
     console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
 }
-

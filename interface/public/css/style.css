@@ -6,7 +6,6 @@ body {
 }
 
 .sliderBackg {
-    /*background-image: url("../img/assets/ipad-rhino-slider-backg.png");*/
     background-size: 768px 1024px;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -24,7 +23,6 @@ body {
 }​
 
 .tweetBackg {
-    /*background-image: url("../img/assets/ipad-rhino-tweet-backg.png");*/
     background-size: 768px 1024px;
     background-repeat: no-repeat;
     background-attachment: fixed;
