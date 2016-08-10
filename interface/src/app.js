@@ -44,7 +44,7 @@ var myEventEmitter = new EventEmitter();
 var client = new Twitter(credentials);
 var stream = client.stream('statuses/filter', {track: KEYWORD});
 var history = function() {
-    client.get('search/tweets', {q: KEYWORD, since_id:756113900718985200}, function(error, tweets, response) {
+    client.get('search/tweets', {q: KEYWORD, since_id:763057081679224800}, function(error, tweets, response) {
         var ordered = tweets.statuses.reverse();
         ordered.forEach(function(historicTweet){
             log.trace("{}",[historicTweet.id]);

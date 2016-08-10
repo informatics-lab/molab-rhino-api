@@ -36,7 +36,7 @@ module.exports = function(display, themeServer, eventEmitter) {
     var blue = function () {
         return new Promise(function(resolve, reject){
             log.info("Setting all pixels to blue");
-            display.setAllPixelsToColor(Color("blue"));
+            display.setPixelsToColorArray(guessArray(correctStringArray));
             setTimeout(function () {resolve()}, COLOR_FLASH_LENGTH);
         });
     };
