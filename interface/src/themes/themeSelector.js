@@ -5,7 +5,7 @@ var correctStringArray = require('./data/correct.json');
 var incorrectStringArray = require('./data/incorrect.json');
 var currentThemes = require('./data/theme-index.json');
 
-const COLOR_FLASH_LENGTH = 3000;
+const COLOR_FLASH_LENGTH = 1000;
 
 var guessArray = function(stringArray) {
     var array = [];
@@ -57,37 +57,62 @@ module.exports = function(display, themeServer, eventEmitter) {
         }
     };
 
+    var themePicker = function (guess, theme) {
+      return new Promise(function(resolve, reject){
+        log.debug("{} matched theme {}",[guess, theme.name]);
+        if ('programmed' === theme.type) {
+            log.debug("using programmed theme [{}]", [JSON.stringify(theme)]);
+            green().then(function(){
+                return themeServer[guess]();
+            }).then(function(){
+                off();
+            }).then(function(){
+                resolve();
+                return true;
+            });
+        }
+        else {
+            green().then(function(){
+                log.debug("emitting theme object [{}]", [JSON.stringify(theme)]);
+                eventEmitter.emit('mediaTheme', theme);
+            }).then(function(){
+                resolve();
+                return true;
+            });
+        }
+      });
+    }
+
     return {
 
         guessTheme : function(guess) {
-            setInterupt ();
+            setInterupt();
+            var correctGuesses = 0;
             currentThemes.forEach(function(theme) {
-                if (guess === theme.name) {
-                    log.debug("{} matched theme {}",[guess, theme.name]);
-                    if ('programmed' === theme.type) {
-                        log.debug("using programmed theme [{}]", [JSON.stringify(theme)]);
-                        green().then(function(){
-                            return themeServer[guess]();
-                            }).then(function(){
-                                off();
-                            });
-                        return true;
-                    }
-                    else {
-                        green();
-                        log.debug("emitting theme object [{}]", [JSON.stringify(theme)]);
-                        eventEmitter.emit('mediaTheme', theme);
-                        return true;
+                if(guess === 'rainbow'){
+                    correctGuesses ++;
+                    if(theme.name === 'rainbow') {
+                        themePicker(guess, theme).then(function(){
+                            return true;
+                        });
                     }
                 }
+                else if(guess.includes(theme.name)){
+                    correctGuesses ++;
+                    themePicker(guess, theme).then(function(){
+                        return true;
+                    });
+                }
             });
-            return false;
+            if (correctGuesses === 0) {
+                return false;
+            }
         },
 
         selectTheme : function(selectedTheme) {
             setInterupt ();
             currentThemes.forEach(function(theme) {
-                if (selectedTheme === theme.name) {
+                if (selectedTheme.includes(theme.name)) {
                     if ('programmed' === theme.type) {
                         blue().then(function(){
                             return themeServer[selectedTheme]();
@@ -96,8 +121,9 @@ module.exports = function(display, themeServer, eventEmitter) {
                             });
                     }
                     else {
-                        blue();
-                        eventEmitter.emit('mediaTheme', theme);
+                        blue().then(function(){
+                            eventEmitter.emit('mediaTheme', theme);
+                        });
                     }
                 }
             });
@@ -109,7 +135,6 @@ module.exports = function(display, themeServer, eventEmitter) {
         },
 
         selectColorStringArray : function(colorStringArray) {
-            // setInterupt();
             var colors = [];
             colorStringArray.forEach(function(colorString) {
                 colors.push(Color(colorString));
