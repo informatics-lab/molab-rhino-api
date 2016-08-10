@@ -86,30 +86,25 @@ body {
     width: 200px;
 }
 
-.rainbow-btn {
+.javan-btn {
     position: fixed;
     top: 740px;
     left: 70px;
 }
 
-.rhino-no-btn {
+.sunrise-btn {
     position: fixed;
     top: 800px;
     left: 140px;
 }
 
-.blank-btn-cent {
-    position: fixed;
-    top: 860px;
-}
-
-.blank-btn {
+.rainy-btn {
     position: fixed;
     top: 800px;
     right: 140px;
 }
 
-.star-btn {
+.olympics-btn {
     position: fixed;
     top: 740px;
     right: 70px;
@@ -122,15 +117,30 @@ body {
     font-family: courier;
     font-weight: lighter;
     font-size: 1.5em;
-    letter-spacing: -2px;
+    letter-spacing: 0px;
     background-color: transparent;
     pointer-events: none;
     cursor: default;
 }
 
-.star-text {
+.javan-text {
     top: 725px;
-    right: 140px;
+    left: 130px;
+}
+
+.sunrise-text {
+    top: 785px;
+    left: 190px;
+}
+
+.rainy-text {
+    top: 785px;
+    right: 200px;
+}
+
+.olympics-text {
+    top: 725px;
+    right: 110px;
 }
 
 /*

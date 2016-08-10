@@ -16,6 +16,19 @@ window.onload = function () {
         div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
 
     });
+    socket.on('mediaTheme', function(theme) {
+        if (theme.type === 'video') {
+            console.debug("video playing {}", [theme.fileName]);
+            sampleVideoCanvas(theme.fileName);
+        }
+        if (theme.type === 'image') {
+            console.debug("image displaying {}", [theme.fileName]);
+            sampleImageCanvas(theme.fileName);
+        }
+    });
+    socket.on('interupt', function() {
+        clearVideo();
+    });
     socket.emit('historicTweets');
 };
 
@@ -24,6 +37,7 @@ window.onload = function () {
  */
 function selectTheme(theme) {
     console.log('button pressed');
+    clearVideo();
     socket.emit('selectTheme',theme);
 }
 
@@ -46,4 +60,10 @@ function colorSliderChanged() {
     var colorString = ("#" + red.toString(16) + green.toString(16) + blue.toString(16));
     socket.emit('selectColor', colorString);
     console.log("combined color", ["#" + red.toString(16) + green.toString(16) + blue.toString(16)]);
+}
+
+function clearVideo() {
+  if (video) {
+    video.pause();
+  }
 }

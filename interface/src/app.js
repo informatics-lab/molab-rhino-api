@@ -8,10 +8,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var swearjar = require('swearjar');
 
-var fs = require('fs');
-var ytdl = require('ytdl-core');
-var request = require('request');
-
 var Twitter = require('twitter');
 var Themes = require('./themes');
 var ThemeServer = Themes.themeServer;
@@ -23,10 +19,14 @@ var EventEmitter = require('events');
 var Color = require('color');
 
 // var display = new Display();     //for arduino
+<<<<<<< HEAD
+var display = new Display("http://192.168.1.2:8000/", 1002); //for Pi
+=======
 var display = new Display("http://localhost:8000/", 1002); //for Pi
+>>>>>>> master
 var themeServer = new ThemeServer(display);
-var themeSelector = new ThemeSelector(display, themeServer);
-
+var eventEmitter = new EventEmitter(eventEmitter);
+var themeSelector = new ThemeSelector(display, themeServer, eventEmitter);
 
 
 // read in credentials from env variables
@@ -42,20 +42,6 @@ swearjar.loadBadWords('./config/en_US.json');
 const KEYWORD = "technorhino";
 
 var myEventEmitter = new EventEmitter();
-
-// Streams a youtube video
-function youTube (videoURL) {
-    log.trace("video url to download {}", [videoURL]);
-    ytdl(videoURL)
-      .pipe(fs.createWriteStream('public/data/video.mp4'));
-}
-
-function imgDownload (imageURL, callback) {
-    log.trace("image url to download {}", [imageURL]);
-    request(imageURL)
-      .pipe(fs.createWriteStream('public/data/image.png'))
-        .on('close', callback);
-}
 
 // ---COMMENT OUT SECTION IF NO INTERNET CONNECTION ---
 
@@ -79,27 +65,14 @@ stream.on('data', function (tweet) {
             var tag = hashtag.text.toLowerCase();
             if (tag != KEYWORD) {
                 log.trace("Stripped hashtag : {}", [hashtag.text]);
-                themeSelector.guessTheme(tag);
+                if (themeSelector.guessTheme(tag) === true) {
+                    themeSelector.selectOff();
+                }
+                else {
+                    themeSelector.incorrect();
+                }
             }
-        });
-        tweet.entities.urls.forEach(function (url) {
-            if(tweet.entities.urls != undefined) {
-                var tweetURL = url.expanded_url;
-                log.trace("video url extracted from tweet {}", [tweetURL]);
-                youTube(tweetURL);
-                vidSource = 'video.mp4';
-                myEventEmitter.emit('vidSource', vidSource);
-            };
-        });
-        tweet.entities.media.forEach(function (media) {
-            if(tweet.entities.media != undefined) {
-                var imageURL = media.media_url;
-                log.trace("image url {}", [imageURL]);
-                imgDownload(imageURL, function() {
-                  imgSource = 'image.png';
-                  myEventEmitter.emit('imgSource', imgSource);
-                });
-            };
+            themeSelector.selectOff();
         });
 });
 
@@ -110,16 +83,16 @@ stream.on('error', function (error) {
 io.on('connection', function(socket){
     log.debug('Web ui connected');
 
-    myEventEmitter.on('tweet', function(tweet){
+    myEventEmitter.on('tweet', function(tweet) {
         socket.emit('tweet', tweet);
     });
 
-    myEventEmitter.on('vidSource', function(vidSource) {
-        socket.emit('vidSource', vidSource);
+    eventEmitter.on('interupt', function() {
+        socket.emit('interupt');
     });
 
-    myEventEmitter.on('imgSource', function(imgSource) {
-        socket.emit('imgSource', imgSource);
+    eventEmitter.on('mediaTheme', function(theme) {
+        socket.emit('mediaTheme', theme);
     });
 
     socket.on('selectTheme', function(theme) {

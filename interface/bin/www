@@ -3,6 +3,6 @@
 var logger = require('../src/log').logger;
 var log = new logger("www");
 log.setAppName("molab-led-rhino");
-log.setLogLevel(log.logLevel.trace);
+log.setLogLevel(log.logLevel.log);
 
 var app = require('../src/app');
