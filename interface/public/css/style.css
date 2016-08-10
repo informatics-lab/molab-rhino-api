@@ -61,7 +61,7 @@ body {
     position: fixed;
     text-align: center;
     width: 500px;
-    top: 300px;
+    top: 308px;
     left: 50%;
     margin-left: -250px;
 }
@@ -72,12 +72,23 @@ body {
 }
 
 .theme-hashtags {
+    font-family: courier;
     position: fixed;
     margin: 0 auto;
     text-align: center;
     width: 100%;
-    top: 790px;
+    top: 412px;
     color: rgb(38,161,208);
+}
+
+.tweet-footer {
+    font-family: courier;
+    text-align: center;
+    position: fixed;
+    width: 80%;
+    top: 840px;
+    left: 50%;
+    margin-left: -40%;
 }
 
 /*
@@ -148,22 +159,22 @@ body {
 }
 
 .javan-text {
-    top: 725px;
+    top: 729px;
     left: 130px;
 }
 
 .sunrise-text {
-    top: 785px;
+    top: 789px;
     left: 190px;
 }
 
 .rainy-text {
-    top: 785px;
-    right: 200px;
+    top: 789px;
+    right: 210px;
 }
 
 .olympics-text {
-    top: 725px;
+    top: 729px;
     right: 110px;
 }
 
@@ -173,7 +184,7 @@ body {
 .tweet-container {
     text-align: center;
     position: fixed;
-    top: 430px;
+    top: 470px;
     width:500px;
     left:50%;
     margin-left: -250px;
