@@ -72,11 +72,11 @@ function deploy() {
 
 	// and npm install interface with --production
 	console.log('npm installing...');
-	execSync(`npm -C ~/github/molab-rhino-api/interface install --production`, execCallback);
+	execSync(`sudo npm -C ~/github/molab-rhino-api/interface install --production`, execCallback);
 
   // and npm install deploy with --production
 	console.log('npm installing...');
-	execSync(`npm -C ~/github/molab-rhino-api/deploy install --production`, execCallback);
+	execSync(`sudo npm -C ~/github/molab-rhino-api/deploy install --production`, execCallback);
 
   // change to interface directory
   console.log('move to interface directory...');
@@ -84,7 +84,7 @@ function deploy() {
 
   // and run npm start
   console.log('restarting servers...');
-  execSync('npm start', execCallback);
+  execSync('sudo npm start', execCallback);
 
 }
 
