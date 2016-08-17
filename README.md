@@ -61,7 +61,11 @@ If these cannot be set or no internet connection is present, please remove lines
 
 ## Building and running
 
-Clone the repo
+Install NeoPixels onto your Raspberry Pi, this allows you to control the LED array. Follow the link to get up an running
+
+[https://learn.adafruit.com/neopixels-on-raspberry-pi/overview](https://learn.adafruit.com/neopixels-on-raspberry-pi/overview)
+
+Once that is installed clone the repo
 
 ```
 git clone https://github.com/met-office-lab/molab-rhino-api.git
