@@ -22,6 +22,10 @@ window.onload = function () {
             console.debug("video playing {}", [theme.fileName]);
             sampleVideoCanvas(theme.fileName);
         }
+        if (theme.type === 'gif') {
+            console.debug("gif displaying {}", [theme.fileName]);
+            sampleGifCanvas(theme.fileName);
+        }
         if (theme.type === 'image') {
             console.debug("image displaying {}", [theme.fileName]);
             sampleImageCanvas(theme.fileName);
@@ -29,6 +33,7 @@ window.onload = function () {
     });
     socket.on('interupt', function() {
         clearVideo();
+        clearGif();
     });
     socket.emit('historicTweets');
 };
@@ -69,9 +74,9 @@ function clearVideo() {
   }
 }
 
-function playVideo() {
-  if (video) {
-    console.log("video play clicked");
-    video.play();
+function clearGif() {
+  if(gifLoop) {
+      clearInterval(gifLoop);
+      gifLoop = null;
   }
 }

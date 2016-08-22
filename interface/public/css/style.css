@@ -96,6 +96,7 @@ body {
 */
 
 .led-mapping {
+    /* TODO: change this back before commiting */
     /*display: none;*/
     /*-webkit-transform:translateX(1024px);*/
 }

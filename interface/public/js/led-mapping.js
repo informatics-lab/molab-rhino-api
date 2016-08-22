@@ -11,6 +11,7 @@ const HEIGHT = (Y_MAX + 1 ) - Y_MIN;
 //     getMaxMin(ledMapping);
 
 var video;
+var gifLoop;
 
 function plotOnCanvas(xyrgbArray) {
     var mappingCanvas = document.getElementById('mappingCanvas');
@@ -71,6 +72,7 @@ function getMaxMin(arrayOfArrays) {
 }
 
 var sampleImageCanvas = function (mediaSource) {
+    clearInterval(gifLoop);
     mappingArray = LED_MAPPING;
     var sourceCanvas = document.getElementById('sourceCanvas');
     sourceCanvas.width = WIDTH;
@@ -78,7 +80,6 @@ var sampleImageCanvas = function (mediaSource) {
     var sourceContext = sourceCanvas.getContext('2d');
 
     var image = new Image();
-    // image.src = source.src;
 
     image.src = "/data/" + mediaSource;
     console.debug(image.src);
@@ -91,8 +92,31 @@ var sampleImageCanvas = function (mediaSource) {
     };
 };
 
+var sampleGifCanvas = function (mediaSource) {
+    mappingArray = LED_MAPPING;
+    var sourceCanvas = document.getElementById('sourceCanvas');
+    sourceCanvas.width = WIDTH;
+    sourceCanvas.height = HEIGHT;
+    var sourceContext = sourceCanvas.getContext('2d');
+    sourceContext.drawImage(sourceCanvas, 0, 0, WIDTH, HEIGHT);
+
+    var image = new Image();
+    image.src = "/data/" + mediaSource;
+    console.debug(image.src);
+    image.crossOrigin = "Anonymous";
+    var imgLoaded = image.complete;
+
+    var loop = setInterval (function() {
+            gifLoop = loop;
+            sourceContext.drawImage(image, 0, 0, WIDTH, HEIGHT);
+            var xyrgbArray = getXyrgbArrayFromContext(sourceContext, mappingArray);
+            plotOnCanvas(xyrgbArray);
+            emitColorStringArray(xygbArrayToHexColorStringArray(xyrgbArray));
+    }, 1000/10);
+};
 
 var sampleVideoCanvas = function (mediaSource) {
+    clearInterval(gifLoop);
     mappingArray = LED_MAPPING;
     var source = document.getElementById('source');
     var sourceCanvas = document.getElementById('sourceCanvas');
@@ -125,15 +149,7 @@ var sampleVideoCanvas = function (mediaSource) {
     video.addEventListener('ended', function() {
         clearInterval(loop);
     });
-    video.onerror = function() {
-        console.log("Error! Something went wrong");
-    };
-    video.onstalled = function() {
-        console.log("Media data is not available");
-    };
     video.onsuspend = function() {
-        document.getElementById('link').click();
-        console.log(video.canPlayType('video/mp4'));
         console.log("Loading of the media is suspended");
     };
 
