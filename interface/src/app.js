@@ -19,7 +19,7 @@ var EventEmitter = require('events');
 var Color = require('color');
 
 // var display = new Display();     //for arduino
-var display = new Display("http://localhost:8000/", 1002); //for Pi
+var display = new Display("http://192.168.1.2:8000/", 1002); //for Pi
 var themeServer = new ThemeServer(display);
 var eventEmitter = new EventEmitter(eventEmitter);
 var themeSelector = new ThemeSelector(display, themeServer, eventEmitter);
@@ -50,8 +50,8 @@ var history = function() {
             log.trace("{}",[historicTweet.id]);
             myEventEmitter.emit('tweet', historicTweet);
         });
-    })
-}
+    });
+};
 
 stream.on('data', function (tweet) {
         log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
@@ -62,7 +62,7 @@ stream.on('data', function (tweet) {
             if (tag != KEYWORD) {
                 log.debug("Stripped hashtag : {}", [hashtag.text]);
                 var result = themeSelector.guessTheme(tag);
-                if (result == false) {
+                if (result === false) {
                     themeSelector.incorrect();
                 }
             }

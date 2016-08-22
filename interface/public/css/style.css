@@ -17,7 +17,7 @@ body {
     position: fixed;
     width: 768px;
     height: 1024px;
-    top: 0px;
+    top: 0;
     left:50%;
     margin-left: -384px;
 }​
@@ -34,7 +34,7 @@ body {
     position: fixed;
     width: 768px;
     height: 1024px;
-    top: 0px;
+    top: 0;
     left:50%;
     margin-left: -384px;
 }​
@@ -96,7 +96,8 @@ body {
 */
 
 .led-mapping {
-    display: none;
+    /*display: none;*/
+    /*-webkit-transform:translateX(1024px);*/
 }
 
 /*
@@ -152,7 +153,7 @@ body {
     font-family: courier;
     font-weight: lighter;
     font-size: 1.5em;
-    letter-spacing: 0px;
+    letter-spacing: 0;
     background-color: transparent;
     pointer-events: none;
     cursor: default;

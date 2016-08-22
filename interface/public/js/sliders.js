@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function(){
   setValue(128,1,false);
   setValue(128,2,false);
   setValue(128,3,false);
-})
+});
 
 function themeButtonPressed() {
 	setValue(128,1,false);

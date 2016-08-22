@@ -108,7 +108,8 @@ var sampleVideoCanvas = function (mediaSource) {
     console.trace(video.src);
     video.crossOrigin = "Anonymous";
     video.controls = "controls";
-    video.autoplay = false;
+    video.preload = "auto";
+    video.autoplay = true;
     video.loop = false;
     video.addEventListener('canplay', function() {
         video.play();
@@ -124,6 +125,17 @@ var sampleVideoCanvas = function (mediaSource) {
     video.addEventListener('ended', function() {
         clearInterval(loop);
     });
+    video.onerror = function() {
+        console.log("Error! Something went wrong");
+    };
+    video.onstalled = function() {
+        console.log("Media data is not available");
+    };
+    video.onsuspend = function() {
+        document.getElementById('link').click();
+        console.log(video.canPlayType('video/mp4'));
+        console.log("Loading of the media is suspended");
+    };
 
     var sampleLoop = function() {
         return setInterval (function() {

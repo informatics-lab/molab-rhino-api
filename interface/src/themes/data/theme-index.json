@@ -4,8 +4,12 @@
   {"name":"sun", "fileName":"sunrise.mp4", "type":"video"},
   {"name":"rain", "fileName":"rainy.mp4", "type":"video"},
   {"name":"disco", "fileName":"disco.mp4", "type":"video"},
-  {"name":"rhino", "fileName":"other-rhinos.mp4", "type":"video"},
+  {"name":"other", "fileName":"other-rhinos.mp4", "type":"video"},
+  {"name":"kaleider", "fileName":"kaleider.mp4", "type":"video"},
   {"name":"olympic", "fileName":"union-jack.png", "type":"image"},
   {"name":"ring", "fileName":"rings.png", "type":"image"},
+  {"name":"target", "fileName":"target.png", "type":"image"},
+  {"name":"beach", "fileName":"beach.png", "type":"image"},
+  {"name":"antoine", "fileName":"french.png", "type":"image"}
   {"name":"star", "fileName":"starry.js", "type":"programmed"}
 ]

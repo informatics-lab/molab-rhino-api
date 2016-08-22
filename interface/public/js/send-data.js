@@ -12,9 +12,10 @@ window.onload = function () {
         tweetNum ++;
 //        console.log('total tweet number', tweetNum);
 //        console.log('tweet received', tweet);
-        var div = document.getElementById('tweetDisplay');
-        div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
-
+        if(document.getElementById("tweetDisplay") !== null){
+            var div = document.getElementById('tweetDisplay');
+            div.innerHTML = tweetToHtml(tweet) + div.innerHTML;
+        }
     });
     socket.on('mediaTheme', function(theme) {
         if (theme.type === 'video') {
@@ -43,7 +44,7 @@ function selectTheme(theme) {
 
 function tweetToHtml(tweet) {
     var html = '<div class="tweet">';
-    html = html + '<img src="'+tweet.user.profile_image_url+'" />';
+    html = html + '<img src="'+ tweet.user.profile_image_url_https +'" />';
     html = html + '<span><span class="userName">' + tweet.user.name + '</span>' + '<span class="screenName">' + '@' + tweet.user.screen_name + '</span>' + '<span class="timeStamp">' + tweet.created_at.substring(0,16) + '</span></span>';
     html = html + '<p>' + tweet.text + '</p>';
     html = html + '</div>';
@@ -65,5 +66,12 @@ function colorSliderChanged() {
 function clearVideo() {
   if (video) {
     video.pause();
+  }
+}
+
+function playVideo() {
+  if (video) {
+    console.log("video play clicked");
+    video.play();
   }
 }
