@@ -1,11 +1,15 @@
 [
-  {"name":"javan", "fileName":"javan-nos-2.mp4", "type":"video"},
-  {"name":"rainbow", "fileName":"Rainbow.mp4", "type":"video"},
-  {"name":"sun", "fileName":"sunrise.mp4", "type":"video"},
-  {"name":"rain", "fileName":"rainy.mp4", "type":"video"},
-  {"name":"disco", "fileName":"disco.mp4", "type":"video"},
-  {"name":"rhino", "fileName":"other-rhinos.mp4", "type":"video"},
+  {"name":"javan", "fileName":"javan-nos-2-gimp.gif", "type":"gif"},
+  {"name":"rainbow", "fileName":"rainbow-gimp.gif", "type":"gif"},
+  {"name":"sun", "fileName":"sunrise-gimp.gif", "type":"gif"},
+  {"name":"rain", "fileName":"rainy-gimp.gif", "type":"gif"},
+  {"name":"disco", "fileName":"disco-gimp.gif", "type":"gif"},
+  {"name":"other", "fileName":"other-rhinos-gimp.gif", "type":"gif"},
+  {"name":"kaleider", "fileName":"kaleider-gimp.gif", "type":"gif"},
   {"name":"olympic", "fileName":"union-jack.png", "type":"image"},
   {"name":"ring", "fileName":"rings.png", "type":"image"},
+  {"name":"target", "fileName":"target.png", "type":"image"},
+  {"name":"beach", "fileName":"beach.png", "type":"image"},
+  {"name":"antoine", "fileName":"french.png", "type":"image"},
   {"name":"star", "fileName":"starry.js", "type":"programmed"}
 ]

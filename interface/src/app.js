@@ -50,8 +50,8 @@ var history = function() {
             log.trace("{}",[historicTweet.id]);
             myEventEmitter.emit('tweet', historicTweet);
         });
-    })
-}
+    });
+};
 
 stream.on('data', function (tweet) {
         log.trace("Tweet from @{}:\n{}", [tweet.user.screen_name, tweet.text]);
@@ -62,7 +62,7 @@ stream.on('data', function (tweet) {
             if (tag != KEYWORD) {
                 log.debug("Stripped hashtag : {}", [hashtag.text]);
                 var result = themeSelector.guessTheme(tag);
-                if (result == false) {
+                if (result === false) {
                     themeSelector.incorrect();
                 }
             }
