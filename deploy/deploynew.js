@@ -6,7 +6,7 @@ var execSync = require('child_process').execSync;
 var localtunnel = require('localtunnel');
 
 var port = 5000;
-var projectRoot = '~/github/molab-rhino-api/';
+var projectRoot = '/home/pi/github/molab-rhino-api/';
 
 var tunnel = localtunnel(port, { subdomain: 'rhino' }, function (err, tunnel) {
     if (err) console.log('error: ' + err);
@@ -44,19 +44,20 @@ app.post('/deploy', function (req, res) {
 function deploy() {
   // change to home directory
   console.log('move to home directory...');
-	execSync('cd ~/github/molab-rhino-api/', execCallback);
+	execSync(`cd /home/pi/github/molab-rhino-api/`, execCallback);
+	execSync(`pwd`, execCallback);
 
   // kill the npm start
   console.log('kill npm start...');
-	execSync('ps aux | grep \'sh -c node\' | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
+	execSync(`ps aux | grep \'sh -c node\' | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9`, execCallback);
 
   // kill existing flask server
   console.log('kill flask server...');
-  execSync('ps aux | grep flask | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
+  execSync(`ps aux | grep flask | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9`, execCallback);
 
   // kill node server
   console.log('kill node server...');
-  execSync('ps aux | grep bin/www | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9', execCallback);
+  execSync(`ps aux | grep bin/www | grep -v grep | awk \'{print $2}\' | xargs sudo kill -9`, execCallback);
 
 	// reset any changes that have been made locally
 	console.log('resetting git...');
@@ -72,19 +73,22 @@ function deploy() {
 
 	// and npm install interface with --production
 	console.log('npm installing...');
-	execSync(`sudo npm -C ~/github/molab-rhino-api/interface install --production`, execCallback);
+	execSync(`sudo npm -C /home/pi/github/molab-rhino-api/interface install --production`, execCallback);
+	execSync(`pwd`, execCallback);
 
   // and npm install deploy with --production
 	console.log('npm installing...');
-	execSync(`sudo npm -C ~/github/molab-rhino-api/deploy install --production`, execCallback);
+	execSync(`sudo npm -C /home/pi/github/molab-rhino-api/deploy install --production`, execCallback);
+	execSync(`pwd`, execCallback);
 
   // change to interface directory
   console.log('move to interface directory...');
-	execSync('cd ~/github/molab-rhino-api/interface', execCallback);
+	execSync(`cd /home/pi/github/molab-rhino-api/interface`, execCallback);
+	execSync(`pwd`, execCallback);
 
   // and run npm start
   console.log('restarting servers...');
-  execSync('sudo npm start', execCallback);
+  execSync(`sudo npm start`, execCallback);
 
 }
 
