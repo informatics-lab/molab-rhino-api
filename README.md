@@ -98,7 +98,7 @@ Use `node bin/www` to start the node server and `sudo ./ledserver.sh` to start t
 There are two methods to adding themes, they can either be 1. media based themes or 2. programmed themes.
 
 #### 1. Media themes
-These are either photos or videos, add the desired files to `interface/public/data`
+These are either photos, videos or gifs, add the desired files to `interface/public/data`
 
 These files then need index in `interface/src/themes/data/theme-index.json` using the following format:
 
@@ -108,7 +108,9 @@ These files then need index in `interface/src/themes/data/theme-index.json` usin
 
   - name - the keyword used to activate the theme
   - fileName - the name of the video or photo, include the file extension.
-  - type - either set to video, image, or programmed based on the the theme type.
+  - type - either set to video, image, gif, or programmed based on the the theme type.
+
+**Note** video based themes will **not** auto play on a mobile device due to OS restrictions. This is bypassed by using gif files for mobile OS.  
 
 #### 2. Programmed themes
 When adding themes create a new `themeName.js` file in the `custom` directory, changing `themeName`.
