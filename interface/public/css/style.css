@@ -206,6 +206,8 @@ body {
     float: left;
     padding:5px;
     padding-right:10px;
+    width: 48px;
+    height: 48px;
 }
 
 .tweet p {

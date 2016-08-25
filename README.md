@@ -112,6 +112,8 @@ These files then need index in `interface/src/themes/data/theme-index.json` usin
 
 **Note** video based themes will **not** auto play on a mobile device due to OS restrictions. This is bypassed by using gif files for mobile OS.  
 
+Media themes can be slow to load onto the LED array if the file size is very large (>15mb). Due to the low resolution of the array compressing files is not an issue. 
+
 #### 2. Programmed themes
 When adding themes create a new `themeName.js` file in the `custom` directory, changing `themeName`.
 
