@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>Met Office :: Informatics Lab :: Themes </title>
 
@@ -54,19 +54,19 @@
 <!-- THEMES -->
 
 <div class="theme-container">
-  <a class="button-theme" href="#" onclick="selectTheme('javan');themeButtonPressed()">
+  <a class="button-theme" id="javanButton" href="#" onclick="selectTheme('javan');themeButtonPressed();buttonDisable()">
       <img class="javan-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
       <p class="button-text javan-text">Javan</p>
   </a>
-  <a class="button-theme" href="#" onclick="selectTheme('sun');themeButtonPressed()">
+  <a class="button-theme" id="sunriseButton" href="#" onclick="selectTheme('sun');themeButtonPressed();buttonDisable()">
       <img class="sunrise-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
       <p class="button-text sunrise-text">Sunrise</p>
   </a>
-  <a class="button-theme" href="#" onclick="selectTheme('rain');themeButtonPressed()">
+  <a class="button-theme" id="rainButton" href="#" onclick="selectTheme('rain');themeButtonPressed();buttonDisable()">
       <img class="rainy-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
       <p class="button-text rainy-text">Rain</p>
   </a>
-    <a class="button-theme" href="#" onclick="selectTheme('olympic');themeButtonPressed()">
+    <a class="button-theme" id="flagButton" href="#" onclick="selectTheme('olympic');themeButtonPressed();buttonDisable()">
         <img class="olympics-btn" src="img/assets/blank-btn.png" onmouseover="this.src='img/assets/blank-btn-pressed.png'" onmouseout="this.src='img/assets/blank-btn.png'"/>
         <p class="button-text olympics-text">Olympics</p>
     </a>

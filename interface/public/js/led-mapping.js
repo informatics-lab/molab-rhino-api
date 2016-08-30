@@ -72,7 +72,6 @@ function getMaxMin(arrayOfArrays) {
 }
 
 var sampleImageCanvas = function (mediaSource) {
-    clearInterval(gifLoop);
     mappingArray = LED_MAPPING;
     var sourceCanvas = document.getElementById('sourceCanvas');
     sourceCanvas.width = WIDTH;
@@ -98,6 +97,7 @@ var sampleGifCanvas = function (mediaSource) {
     sourceCanvas.width = WIDTH;
     sourceCanvas.height = HEIGHT;
     var sourceContext = sourceCanvas.getContext('2d');
+
     sourceContext.drawImage(sourceCanvas, 0, 0, WIDTH, HEIGHT);
 
     var image = new Image();
@@ -112,11 +112,10 @@ var sampleGifCanvas = function (mediaSource) {
             var xyrgbArray = getXyrgbArrayFromContext(sourceContext, mappingArray);
             plotOnCanvas(xyrgbArray);
             emitColorStringArray(xygbArrayToHexColorStringArray(xyrgbArray));
-    }, 1000/10);
+    }, 1000/5);
 };
 
 var sampleVideoCanvas = function (mediaSource) {
-    clearInterval(gifLoop);
     mappingArray = LED_MAPPING;
     var source = document.getElementById('source');
     var sourceCanvas = document.getElementById('sourceCanvas');

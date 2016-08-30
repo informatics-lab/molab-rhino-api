@@ -11,5 +11,7 @@
   {"name":"target", "fileName":"target.png", "type":"image"},
   {"name":"beach", "fileName":"beach.png", "type":"image"},
   {"name":"antoine", "fileName":"french.png", "type":"image"},
+  {"name":"flowerpower", "fileName":"flower.png", "type":"image"},
+  {"name":"ramm", "fileName":"ramm.png", "type":"image"},
   {"name":"star", "fileName":"starry.js", "type":"programmed"}
 ]
