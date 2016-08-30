@@ -80,3 +80,24 @@ function clearGif() {
       gifLoop = null;
   }
 }
+
+function buttonDisable() {
+    document.getElementById('slider1').style.pointerEvents = 'none';
+    document.getElementById('slider2').style.pointerEvents = 'none';
+    document.getElementById('slider3').style.pointerEvents = 'none';
+    document.getElementById('javanButton').style.pointerEvents = 'none';
+    document.getElementById('sunriseButton').style.pointerEvents = 'none';
+    document.getElementById('rainButton').style.pointerEvents = 'none';
+    document.getElementById('flagButton').style.pointerEvents = 'none';
+    timeOut = setTimeout(buttonTimeOut, 5000);
+}
+
+function buttonTimeOut() {
+  document.getElementById('slider1').style.pointerEvents = 'auto';
+  document.getElementById('slider2').style.pointerEvents = 'auto';
+  document.getElementById('slider3').style.pointerEvents = 'auto';
+  document.getElementById('javanButton').style.pointerEvents = 'auto';
+  document.getElementById('sunriseButton').style.pointerEvents = 'auto';
+  document.getElementById('rainButton').style.pointerEvents = 'auto';
+  document.getElementById('flagButton').style.pointerEvents = 'auto';
+}
